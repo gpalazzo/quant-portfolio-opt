@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # base
 sudo passwd ubuntu #asks for a new password to execute su commands
 
