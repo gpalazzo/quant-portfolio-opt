@@ -4,7 +4,7 @@ ENV PIP_NO_CACHE_DIR=1
 
 # install project requirements
 COPY pyproject.toml .
-RUN pip install poetry==1.0.10 && \
+RUN pip install poetry==1.1.11 && \
     poetry config virtualenvs.create false &&\
     poetry lock && \
     poetry install
