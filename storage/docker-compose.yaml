@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres_instance
+    image: postgres
+    env_file:
+      - postgres.env
+    ports:
+      - "15432:5432"
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  pgadmin:
+    container_name: pgadmin_instance
+    image: dpage/pgadmin4
+    env_file:
+      - pgadmin.env
+    ports:
+      - "16543:80"
+    volumes:
+      - pgadmin-volume:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - postgres-network
+    restart: unless-stopped
+
+networks:
+  postgres-network:
+    driver: bridge
+
+volumes:
+    postgres-db-volume:
+    pgadmin-volume:

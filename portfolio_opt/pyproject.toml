@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "final_project_ipo"
+version = "0.1.0"
+description = ""
+authors = ["Guilherme Palazzo <palazzoeng1@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.7.*"
+
+# GENERAL MAJOR DEPS
+PyPortfolioOpt = "^1.4.2"
+yfinance = "^0.1.63"
+beautifulsoup4 = "^4.10.0"
+yahoo_fin = "^0.8.9"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
