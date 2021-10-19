@@ -11,8 +11,6 @@ python = "3.7.*"
 PyPortfolioOpt = "^1.4.2"
 yfinance = "^0.1.63"
 beautifulsoup4 = "^4.10.0"
-IPython = "^7.28.0"
-ipykernel = "^6.4.1"
 yahoo_fin = "^0.8.9"
 
 [tool.poetry.dev-dependencies]

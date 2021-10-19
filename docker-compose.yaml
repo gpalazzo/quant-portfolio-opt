@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  final_project_ipo:
-    build: .
-    container_name: final_project_ipo
-#    volumes:
-#      - postgres-db-volume:/var/lib/postgresql/data
