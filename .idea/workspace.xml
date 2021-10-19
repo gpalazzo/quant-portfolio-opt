@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="406d1b25-cbbc-4294-b715-29c400ac1683" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/storage/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/storage/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +28,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/etl_orchestration" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage" />
       <recent name="$PROJECT_DIR$/etl_orchestration" />
     </key>
   </component>
@@ -42,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634649411195</updated>
-      <workItem from="1634649417108" duration="3483000" />
+      <workItem from="1634649417108" duration="4389000" />
     </task>
     <servers />
   </component>

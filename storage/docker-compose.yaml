@@ -1,29 +1,42 @@
 version: '3'
 
 services:
-  teste-postgres-compose:
+  postgres:
+    container_name: postgres_instance
     image: postgres
-    environment:
-      POSTGRES_PASSWORD: "Postgres2019!"
+    env_file:
+      - postgres.env
     ports:
       - "15432:5432"
     volumes:
-      - /home/renatogroffe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
+      - postgres-db-volume:/var/lib/postgresql/data
     networks:
-      - postgres-compose-network
+      - postgres-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+    restart: always
 
-  teste-pgadmin-compose:
+  pgadmin:
+    container_name: pgadmin_instance
     image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "renatogroff@yahoo.com.br"
-      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    env_file:
+      - pgadmin.env
     ports:
       - "16543:80"
+    volumes:
+      - pgadmin-volume:/var/lib/pgadmin
     depends_on:
-      - teste-postgres-compose
+      - postgres
     networks:
-      - postgres-compose-network
+      - postgres-network
+    restart: unless-stopped
 
 networks:
-  postgres-compose-network:
+  postgres-network:
     driver: bridge
+
+volumes:
+    postgres-db-volume:
+    pgadmin-volume:
