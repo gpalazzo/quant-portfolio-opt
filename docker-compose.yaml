@@ -1,44 +1,48 @@
 version: '3'
+
 x-airflow-common:
   &airflow-common
-  build: .
+  build:
+    context: ./po201_etl
+    dockerfile: Dockerfile
   env_file:
-    - airflow_base.env
+    - ./po201_etl/airflow_base.env
   volumes:
-    - ./conf:/opt/airflow/conf
-    - ./data:/opt/airflow/data
-    - ./plugins:/opt/airflow/plugins
-    - ./src:/opt/airflow/src
+    - ./po201_etl/conf:/opt/airflow/conf
+    - ./po201_etl/data:/opt/airflow/data
+    - ./po201_etl/plugins:/opt/airflow/plugins
+    - ./po201_etl/src:/opt/airflow/src
+  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
   depends_on:
-    redis:
+    airflow-redis:
       condition: service_healthy
-    postgres:
+    airflow-postgres:
       condition: service_healthy
   networks:
-    - airflow
+    - po201_network
 
 services:
 
-  postgres:
+  airflow-postgres:
     image: postgres:13
-    container_name: airflow-postgres
+    container_name: po201_airflow_postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
+      - airflow-pgsql-volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 5s
       retries: 5
     restart: always
     networks:
-      - airflow
+      - po201_network
 
-  redis:
+  airflow-redis:
     image: redis:latest
-    container_name: airflow-redis
+    container_name: po201_airflow_redis
     ports:
       - "6379:6379"
     healthcheck:
@@ -48,14 +52,14 @@ services:
       retries: 50
     restart: always
     networks:
-      - airflow
+      - po201_network
 
   airflow-webserver:
     <<: *airflow-common
-    container_name: airflow-webserver
+    container_name: po201_airflow_webserver
     command: webserver
     ports:
-      - 8080:8080
+      - "8080:8080"
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
@@ -65,7 +69,7 @@ services:
 
   airflow-scheduler:
     <<: *airflow-common
-    container_name: airflow-scheduler
+    container_name: po201_airflow_scheduler
     command: scheduler
     healthcheck:
       test: ["CMD-SHELL", 'airflow jobs check --job-type SchedulerJob --hostname "$${HOSTNAME}"']
@@ -76,7 +80,7 @@ services:
 
   airflow-worker:
     <<: *airflow-common
-    container_name: airflow-worker
+    container_name: po201_airflow_worker
     command: celery worker
     healthcheck:
       test:
@@ -91,12 +95,30 @@ services:
     <<: *airflow-common
     command: version
     env_file:
-      - airflow_base.env
-      - airflow_init.env
+      - ./po201_etl/airflow_base.env
+      - ./po201_etl/airflow_init.env
+
+  storage-pgsql:
+    image: postgres:13
+    container_name: po201_storage_postgres
+    env_file:
+      - ./po201_storage_sql/pgsql.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - storage-pgsql-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "gpalazzo" ]
+      interval: 5s
+      retries: 5
+    restart: always
+    networks:
+      - po201_network
 
 volumes:
-  postgres-db-volume:
+  airflow-pgsql-volume:
+  storage-pgsql-volume:
 
 networks:
-  airflow:
+  po201_network:
     driver: bridge

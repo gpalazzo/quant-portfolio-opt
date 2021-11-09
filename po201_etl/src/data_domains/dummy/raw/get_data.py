@@ -87,4 +87,7 @@ for ticker in top30_stocks:
     df_income = si.get_income_statement(ticker=ticker)
     df_transposed = df_income.transpose()
     df_parsed = df_transposed[["grossProfit"]]
-    breakpoint()
+
+
+print(df_parsed)
+
