@@ -98,26 +98,26 @@ services:
       - ./po201_etl/airflow_base.env
       - ./po201_etl/airflow_init.env
 
-  storage-pgsql:
-    image: postgres:13
-    container_name: po201_storage_postgres
-    env_file:
-      - ./po201_storage_sql/pgsql.env
-    ports:
-      - "5433:5432"
-    volumes:
-      - storage-pgsql-volume:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "gpalazzo" ]
-      interval: 5s
-      retries: 5
-    restart: always
-    networks:
-      - po201_network
+#  storage-pgsql:
+#    image: postgres:13
+#    container_name: po201_storage_postgres
+#    env_file:
+#      - ./po201_storage_sql/pgsql.env
+#    ports:
+#      - "5433:5432"
+#    volumes:
+#      - storage-pgsql-volume:/var/lib/postgresql/data
+#    healthcheck:
+#      test: [ "CMD", "pg_isready", "-U", "gpalazzo" ]
+#      interval: 5s
+#      retries: 5
+#    restart: always
+#    networks:
+#      - po201_network
 
 volumes:
   airflow-pgsql-volume:
-  storage-pgsql-volume:
+#  storage-pgsql-volume:
 
 networks:
   po201_network:
