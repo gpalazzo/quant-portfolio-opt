@@ -1,0 +1,43 @@
+# ------------------------------------- #
+
+# io
+## raw
+date_time_base_path_raw: "/opt/airflow/data/01_raw"
+date_time_file_name_raw:
+  - dummy
+
+date_time_file_type_raw:
+  - csv
+
+## intermediate
+date_time_base_path_int: "/opt/airflow/data/02_intermediate"
+date_time_file_name_int:
+  - dummy
+
+date_time_file_type_int:
+  - parquet
+#
+### primary
+#date_time_base_path_prm: "/opt/airflow/data/03_primary"
+#date_time_file_name_prm:
+#  - date_time_prm
+#
+#date_time_file_type_prm:
+#  - parquet
+#
+### feature
+#date_time_base_path_fte: "/opt/airflow/data/04_feature"
+#date_time_file_name_fte:
+#  - date_time_fte
+#
+#date_time_file_type_fte:
+#  - csv
+#
+## ------------------------------------- #
+#
+## parsing
+#date_time_cols_to_keep_int:
+#  - OrderDate
+#
+#date_time_data_types_prm:
+#  order_date: "datetime64[ns]"
