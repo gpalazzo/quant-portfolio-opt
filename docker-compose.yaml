@@ -12,7 +12,7 @@ x-airflow-common:
     - ./po201_etl/data:/opt/airflow/data
     - ./po201_etl/plugins:/opt/airflow/plugins
     - ./po201_etl/src:/opt/airflow/src
-  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
+  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     airflow-redis:
       condition: service_healthy
@@ -22,7 +22,6 @@ x-airflow-common:
     - po201_network
 
 services:
-
   airflow-postgres:
     image: postgres:13
     container_name: po201_airflow_postgres
@@ -44,7 +43,7 @@ services:
     image: redis:latest
     container_name: po201_airflow_redis
     ports:
-      - "6379:6379"
+      - 6379:6379
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -59,7 +58,7 @@ services:
     container_name: po201_airflow_webserver
     command: webserver
     ports:
-      - "8080:8080"
+      - 8080:8080
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
