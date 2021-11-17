@@ -1,7 +1,8 @@
 [tool.kedro]
-package_name = "po201_portfolio_opt"
-project_name = "po201-portfolio-opt"
+package_name = "po201_model"
+project_name = "po201-model"
 project_version = "0.17.0"
+source_dir = "po201_model"
 
 [tool.poetry]
 name = "po201_portfolio_opt_model"
@@ -35,10 +36,10 @@ extend-exclude = '''
 )/
 '''
 
-[tool.pytest.ini_options]
-addopts = """
---cov-report term-missing \
---cov src/whatever_name -ra"""
+# [tool.pytest.ini_options]
+# addopts = """
+# --cov-report term-missing \
+# --cov src/whatever_name -ra"""
 
 [tool.poetry.dependencies]
 python = "3.7.*"
