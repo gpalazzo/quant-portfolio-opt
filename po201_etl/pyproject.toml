@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "po201_portfolio-opt"
+name = "po201_portfolio_opt_etl"
 version = "0.1.0"
 description = ""
 authors = ["Guilherme Palazzo <palazzoeng1@gmail.com>"]
