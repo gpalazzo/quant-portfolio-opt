@@ -28,12 +28,15 @@
 
 """Project hooks."""
 from typing import Any, Dict, Iterable, Optional
+import os
 
-from kedro.config import ConfigLoader
+from kedro.config import TemplatedConfigLoader
 from kedro.framework.hooks import hook_impl
 from kedro.io import DataCatalog
 from kedro.pipeline import Pipeline
 from kedro.versioning import Journal
+
+from po201_kedro_model.pipelines import data_science_pipeline
 
 
 class ProjectHooks:
@@ -46,11 +49,23 @@ class ProjectHooks:
 
         """
 
-        return {"__default__": Pipeline([])}
+        return {"__default__": Pipeline([data_science_pipeline()])}
 
     @hook_impl
-    def register_config_loader(self, conf_paths: Iterable[str]) -> ConfigLoader:
-        return ConfigLoader(conf_paths)
+    def register_config_loader(
+        self, conf_paths: Iterable[str]
+    ) -> TemplatedConfigLoader:
+        return TemplatedConfigLoader(
+            conf_paths,
+            globals_pattern="*globals.yml",
+            globals_dict={
+                "credentials": {
+                    "postgresql": {
+                        "con": f"postgresql://{os.getenv('PGSQL_USERNAME')}:{os.getenv('PGSQL_PASSWORD')}@{os.getenv('PGSQL_HOST')}:{os.getenv('PGSQL_PORT')}"
+                    }
+                }
+            },
+        )
 
     @hook_impl
     def register_catalog(

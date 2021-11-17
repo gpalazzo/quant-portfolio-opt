@@ -4,7 +4,7 @@
 ## raw
 date_time_base_path_raw: "/opt/airflow/data/01_raw"
 date_time_file_name_raw:
-  - dummy
+  - yahoo_finance
 
 date_time_file_type_raw:
   - csv
@@ -12,7 +12,7 @@ date_time_file_type_raw:
 ## intermediate
 date_time_base_path_int: "/opt/airflow/data/02_intermediate"
 date_time_file_name_int:
-  - dummy
+  - yahoo_finance
 
 date_time_file_type_int:
   - parquet

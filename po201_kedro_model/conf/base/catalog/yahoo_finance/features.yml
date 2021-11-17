@@ -1,0 +1,4 @@
+tickers_table:
+  type: SQLTableDataSet
+  credentials: postgresql
+  table_name: raw.hdfc

@@ -1,13 +1,13 @@
 # from airflow import DAG
 # from airflow.operators.python import PythonOperator
 # from datetime import datetime, timedelta
-# from data_domains.dummy import dummy_pyspark_raw
+# from data_domains.yahoo_finance import dummy_pyspark_raw
 #
 #
-# # dummy pyspark
+# # yahoo_finance pyspark
 # with DAG(
 #     dag_id="dummy_pyspark",
-#     description="All tasks for dummy pyspark",
+#     description="All tasks for yahoo_finance pyspark",
 #     start_date=datetime.now() - timedelta(days=2),
 #     schedule_interval="*/15 * * * *",
 #     catchup=False,
