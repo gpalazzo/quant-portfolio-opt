@@ -117,13 +117,13 @@ services:
 
   kedro-model:
     build:
-      context: ./po201_model
+      context: ./po201_kedro_model
       dockerfile: Dockerfile
     container_name: po201_kedro_model
     ports:
       - "8888:8888"
     volumes:
-      - ./po201_model:/home/kedro
+      - ./po201_kedro_model:/home/kedro
     restart: always
 
 volumes:

@@ -22,10 +22,10 @@ useradd -d /home/kedro -s /bin/bash -g ${KEDRO_GID} -u ${KEDRO_UID} kedro
 WORKDIR /home/kedro
 COPY . .
 RUN chown -R kedro:${KEDRO_GID} /home/kedro
-USER kedro
+#USER kedro
 RUN chmod -R a+w /home/kedro
 
 EXPOSE 8888
 
-# start jupyter to keep container running in dev cycle
-CMD ["kedro", "jupyter", "lab", "--no-browser"]
+# keep Kedro running for dev cycle
+CMD ["kedro", "jupyter", "lab", "--no-browser", "--allow-root"]
