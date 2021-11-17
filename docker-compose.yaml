@@ -43,7 +43,7 @@ services:
     image: redis:latest
     container_name: po201_airflow_redis
     ports:
-      - 6379:6379
+      - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -58,7 +58,7 @@ services:
     container_name: po201_airflow_webserver
     command: webserver
     ports:
-      - 8080:8080
+      - "8080:8080"
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
@@ -114,6 +114,17 @@ services:
     restart: always
     networks:
       - po201_network
+
+  kedro-model:
+    build:
+      context: ./po201_model
+      dockerfile: Dockerfile
+    container_name: po201_kedro_model
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./po201_model:/home/kedro
+    restart: always
 
 volumes:
   airflow-pgsql-volume:
