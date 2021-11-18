@@ -1,9 +1,9 @@
 tickers_table_fte:
-  type: pandas.SQLTableDataSet
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
-  table_name: hdfc
+  sql: "select * from raw.public.hdfc"
 
 tickers_table_mi:
-  type: pandas.SQLTableDataSet
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
-  table_name: fte.hdfc
+  sql: "select * from fte.public.hdfc"

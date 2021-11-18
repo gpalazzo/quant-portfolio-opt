@@ -12,14 +12,14 @@ def data_science_pipeline():
             [
                 node(
                     func=yahoo_finance_features,
-                    inputs=["tickers_table_fte"],
-                    outputs=["tickers_table_mi"],
+                    inputs="tickers_table_fte",
+                    outputs="tickers_table_mi",
                     name="process_yahoo_finance_fte",
                 ),
                 node(
                     func=yahoo_finance_features_aux,
-                    inputs=["tickers_table_mi"],
-                    outputs=["tickers_table_mi2"],
+                    inputs="tickers_table_mi",
+                    outputs="tickers_table_mi2",
                     name="process_yahoo_finance_fte_aux",
                 ),
             ],

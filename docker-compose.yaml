@@ -127,6 +127,8 @@ services:
     volumes:
       - ./po201_kedro_model:/home/kedro
     restart: always
+    networks:
+      - po201_network
 
 volumes:
   airflow-pgsql-volume:

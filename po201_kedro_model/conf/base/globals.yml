@@ -1,4 +1,3 @@
 credentials:
-
   postgres:
-    con: "postgresql://username:password@host:port"
+    con: "postgresql://username:password@host:port/database"
