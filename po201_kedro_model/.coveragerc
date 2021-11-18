@@ -1,6 +1,13 @@
 [report]
 fail_under=0
 show_missing=True
+omit =
+    **/**/__init__.py
+    src/po201_kedro_model/cli.py
+    src/po201_kedro_model/hooks.py
+    src/po201_kedro_model/pipelines/*.py
+    src/po201_kedro_model/run.py
+    src/po201_kedro_model/settings.py
 exclude_lines =
     pragma: no cover
     raise NotImplementedError

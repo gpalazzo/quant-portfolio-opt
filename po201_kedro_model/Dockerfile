@@ -25,6 +25,8 @@ RUN chown -R kedro:${KEDRO_GID} /home/kedro
 #USER kedro
 RUN chmod -R a+w /home/kedro
 
+ENV PYTHONPATH="${PYTHONPATH}:/home/kedro/src"
+
 EXPOSE 8888
 
 # keep Kedro running for dev cycle

@@ -120,11 +120,15 @@ services:
       context: ./po201_kedro_model
       dockerfile: Dockerfile
     container_name: po201_kedro_model
+    env_file:
+      - ./po201_kedro_model/kedro_base.env
     ports:
       - "8888:8888"
     volumes:
       - ./po201_kedro_model:/home/kedro
     restart: always
+    networks:
+      - po201_network
 
 volumes:
   airflow-pgsql-volume:
