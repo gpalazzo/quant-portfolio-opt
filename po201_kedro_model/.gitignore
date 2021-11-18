@@ -5,9 +5,6 @@
 conf/local/**
 !conf/local/.gitkeep
 
-# ignore potentially sensitive credentials files
-conf/**/*credentials*
-
 # ignore everything in the following folders
 data/**
 logs/**
@@ -155,3 +152,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# exclude env files
+**/**.env

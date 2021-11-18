@@ -1,1 +1,1 @@
-from .features import yahoo_finance_features
+from .features import yahoo_finance_features, yahoo_finance_features_aux

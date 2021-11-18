@@ -1,4 +1,9 @@
-tickers_table:
-  type: SQLTableDataSet
-  credentials: postgresql
-  table_name: raw.hdfc
+tickers_table_fte:
+  type: pandas.SQLTableDataSet
+  credentials: postgres
+  table_name: hdfc
+
+tickers_table_mi:
+  type: pandas.SQLTableDataSet
+  credentials: postgres
+  table_name: fte.hdfc

@@ -60,7 +60,7 @@ class ProjectHooks:
             globals_pattern="*globals.yml",
             globals_dict={
                 "credentials": {
-                    "postgresql": {
+                    "postgres": {
                         "con": f"postgresql://{os.getenv('PGSQL_USERNAME')}:{os.getenv('PGSQL_PASSWORD')}@{os.getenv('PGSQL_HOST')}:{os.getenv('PGSQL_PORT')}"
                     }
                 }

@@ -1,4 +1,4 @@
 credentials:
 
-  postgresql:
+  postgres:
     con: "postgresql://username:password@host:port"
