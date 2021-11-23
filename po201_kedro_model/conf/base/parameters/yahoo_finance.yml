@@ -1,0 +1,7 @@
+# quantity of months to generate rolling windows
+month_roll_window:
+  - 3
+  - 6
+  - 12
+  - 24
+  - 36

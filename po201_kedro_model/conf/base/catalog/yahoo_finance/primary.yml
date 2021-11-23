@@ -1,0 +1,29 @@
+yf_hdfc_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.hdfc"
+
+yf_itc_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.itc"
+
+yf_l_and_t_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.l_and_t"
+
+yf_m_and_m_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.m_and_m"
+
+yf_sunpha_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.sunpha"
+
+yf_tcs_prm:
+  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from prm.public.tcs"
