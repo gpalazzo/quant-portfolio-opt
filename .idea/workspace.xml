@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="406d1b25-cbbc-4294-b715-29c400ac1683" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/io/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/io/custom_sql_query.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/globals.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/globals.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/hooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/hooks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
