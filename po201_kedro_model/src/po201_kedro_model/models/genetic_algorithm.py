@@ -1,4 +1,3 @@
-import time
 import numpy as np
 import pandas as pd
 
@@ -125,10 +124,10 @@ class GeneticAlgorithm:
 
 
 def model_run(
-    initial_df=pd.DataFrame({}),
-    qty_genes=6,
-    population_size=100,
-    risk_free_rate=0.0697,
+    initial_df,
+    qty_genes,
+    population_size,
+    risk_free_rate,
 ):
     breakpoint()
     ga_model = GeneticAlgorithm(

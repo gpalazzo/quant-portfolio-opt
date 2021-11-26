@@ -1,1 +1,1 @@
-from .genetic_algorithm import GeneticAlgorithm
+from .genetic_algorithm import model_run
