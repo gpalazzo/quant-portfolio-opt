@@ -14,9 +14,6 @@ class GeneticAlgorithm:
         self.sd_hist_return = None
         self.calculate_statistics()
 
-    def create_gene(self):
-        pass
-
     def create_chromosome(self):
         ch = np.random.rand(self.qty_genes)
         return ch / sum(ch)
@@ -33,8 +30,8 @@ class GeneticAlgorithm:
         part_1 = np.sum(np.multiply(child, self.sd_hist_return) ** 2)
         temp_lst = []
 
-        for i in range(6):
-            for j in range(6):
+        for i in range(self.qty_genes):
+            for j in range(self.qty_genes):
                 temp = self.cov_hist_return.iloc[i][j] * child[i] * child[j]
                 temp_lst.append(temp)
 
@@ -73,9 +70,9 @@ class GeneticAlgorithm:
         Input: Parent
         Output: Offspring (1D Array)"""
         child = parent.copy()
-        n = np.random.choice(range(6), 2)
+        n = np.random.choice(range(self.qty_genes), 2)
         while n[0] == n[1]:
-            n = np.random.choice(range(6), 2)
+            n = np.random.choice(range(self.qty_genes), 2)
         child[n[0]], child[n[1]] = child[n[1]], child[n[0]]
         return child
 
@@ -92,7 +89,7 @@ class GeneticAlgorithm:
         child2 = (1 - alpha) * parent1 + alpha * parent2
         return child1, child2
 
-    def next_generation(self, pop_size, elite, crossover=Arithmetic_crossover):
+    def next_generation(self, elite, crossover):
         """Generates new population from elite population with mutation probability as 0.4 and crossover as 0.6.
         Over the final stages, mutation probability is decreased to 0.1.
         Input: Population Size and elite population.
@@ -100,9 +97,9 @@ class GeneticAlgorithm:
         new_population = []
         elite_range = range(len(elite))
         #     print(elite_range)
-        while len(new_population) < pop_size:
+        while len(new_population) < self.population_size:
             if (
-                len(new_population) > 2 * pop_size / 3
+                len(new_population) > 2 * self.population_size / 3
             ):  # In the final stages mutation frequency is decreased.
                 mutate_or_crossover = np.random.choice([0, 1], p=[0.9, 0.1])
             else:
@@ -115,7 +112,7 @@ class GeneticAlgorithm:
                 p1_idx, p2_idx = np.random.choice(elite_range, 2)
                 c1, c2 = crossover(elite[p1_idx], elite[p2_idx])
                 chk = 0
-                for gene in range(6):
+                for gene in range(self.qty_genes):
                     if c1[gene] < 0:
                         chk += 1
                     else:
@@ -127,36 +124,56 @@ class GeneticAlgorithm:
         return new_population
 
 
-n = 6  # Number of stocks = 6
-pop_size = 100  # initial population = 100
+def model_run(
+    initial_df=pd.DataFrame({}),
+    qty_genes=6,
+    population_size=100,
+    risk_free_rate=0.0697,
+):
+    breakpoint()
+    ga_model = GeneticAlgorithm(
+        initial_df=initial_df,
+        qty_genes=qty_genes,
+        population_size=population_size,
+        risk_free_rate=risk_free_rate,
+    )
+    initial_pop = ga_model.initial_population()
+    _elite = ga_model.Select_elite_population(population=initial_pop)
+    _iteration = 0
+    _expected_returns = 0
+    _expected_risk = 1
+
+    while (_expected_returns < 0.30 and _expected_risk > 0.0005) or _iteration <= 40:
+        print("Iteration:", _iteration)
+        _population = ga_model.next_generation(_elite, ga_model.Arithmetic_crossover)
+        _elite = ga_model.Select_elite_population(population=_population)
+        _expected_returns = ga_model.mean_portfolio_return(_elite[0])
+        _expected_risk = ga_model.var_portfolio_return(_elite[0])
+        print(
+            "Expected returns of {} with risk of {}\n".format(
+                _expected_returns, _expected_risk
+            )
+        )
+        _iteration += 1
+
+    build_report(
+        _initial_df=pd.DataFrame({}),
+        qty_genes="",
+        _elite=_elite,
+        _expected_returns=_expected_returns,
+        _expected_risk=_expected_risk,
+    )
 
 
-# Initial population
-population = np.array([chromosome(n) for _ in range(pop_size)])
+def build_report(_initial_df, qty_genes, _elite, _expected_returns, _expected_risk):
+    print("Portfolio of stocks after all the iterations:\n")
+    [print(_initial_df.columns[i], ":", _elite[0][i]) for i in list(range(qty_genes))]
 
-# Get initial elite population
-elite = Select_elite_population(population)
+    print("Portfolio of stocks after all the iterations:\n")
+    [print(_initial_df.columns[i], ":", _elite[0][i]) for i in list(range(qty_genes))]
 
-iteration = 0
-Expected_returns = 0
-Expected_risk = 1
-
-while (Expected_returns < 0.30 and Expected_risk > 0.0005) or iteration <= 40:
-    print("Iteration:", iteration)
-    population = next_generation(100, elite, Arithmetic_crossover)
-    elite = Select_elite_population(population)
-    Expected_returns = mean_portfolio_return(elite[0])
-    Expected_risk = var_portfolio_return(elite[0])
     print(
-        "Expected returns of {} with risk of {}\n".format(
-            Expected_returns, Expected_risk
+        "\nExpected returns of {} with risk of {}\n".format(
+            _expected_returns, _expected_risk
         )
     )
-    iteration += 1
-
-print("Portfolio of stocks after all the iterations:\n")
-[print(hist_stock_returns.columns[i], ":", elite[0][i]) for i in list(range(6))]
-
-print(
-    "\nExpected returns of {} with risk of {}\n".format(Expected_returns, Expected_risk)
-)

@@ -3,6 +3,7 @@ from po201_kedro_model.data_domains.yahoo_finance import (
     yahoo_finance_primary,
     yahoo_finance_features,
 )
+from po201_kedro_model.models import GeneticAlgorithm
 
 
 def data_science_pipeline():
@@ -34,4 +35,10 @@ def data_science_pipeline():
         )
     )
 
-    return yahoo_finance_pipeline
+    generic_algorithm_pipeline = pipeline(
+        Pipeline(
+            [node(func=GeneticAlgorithm.run, inputs=["yf_tickers_mi"], outputs="dummy")]
+        )
+    )
+
+    return yahoo_finance_pipeline + generic_algorithm_pipeline
