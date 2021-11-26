@@ -1,0 +1,6 @@
+risk_free_rate: 0.0697
+qty_stocks: 6
+population_size: 100
+qty_iterations: 50
+max_expected_return: 0.30
+min_expected_risk: 0.0005
