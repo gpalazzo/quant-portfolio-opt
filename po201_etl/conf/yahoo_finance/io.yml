@@ -1,0 +1,3 @@
+# ---------- STOCKS ---------- #
+db_name: "aux"
+tbl_name: "stock_names"

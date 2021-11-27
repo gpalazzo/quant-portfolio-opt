@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 from typing import List
+from utils import dump_data_pgsql, read_data_pgsql
 
 
 def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
@@ -25,3 +26,9 @@ def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
     df = pd.read_html(response.text)[0]
 
     return list(set(df["Symbol"]))
+
+
+stocks = parse_stocks_index()
+df = pd.DataFrame({"stocks_name": stocks})
+breakpoint()
+dump_data_pgsql(df=df, database="aux", tbl_name="")

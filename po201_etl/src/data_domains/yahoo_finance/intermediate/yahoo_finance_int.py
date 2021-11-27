@@ -1,8 +1,9 @@
-from utils import dump_data_pgsql,
+from utils import parse_stocks_index, dump_data_pgsql
 import yfinance as yf
 
 
-DATABASE = "raw"
+DATABASE = "intm"
+stocks = parse_stocks_index()
 
 
 for i, stock in enumerate(stocks, 1):
