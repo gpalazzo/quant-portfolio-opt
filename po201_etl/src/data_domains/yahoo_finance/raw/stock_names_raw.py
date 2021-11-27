@@ -1,7 +1,8 @@
 import pandas as pd
 import requests
 from typing import List
-from utils import dump_data_pgsql, read_data_pgsql
+from utils import dump_data_pgsql, load_and_merge_ymls
+import os
 
 
 def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
@@ -28,7 +29,10 @@ def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
     return list(set(df["Symbol"]))
 
 
+CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
+config = load_and_merge_ymls(paths=CONFIG_PATH)
 stocks = parse_stocks_index()
 df = pd.DataFrame({"stocks_name": stocks})
-breakpoint()
-dump_data_pgsql(df=df, database="aux", tbl_name="")
+dump_data_pgsql(
+    df=df, database=config["stocks_db_name"], tbl_name=config["stocks_tbl_name"]
+)
