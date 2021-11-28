@@ -3,7 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/primary.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/yahoo_finance.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/yahoo_finance.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/primary/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1637951730577</updated>
       <workItem from="1637951734329" duration="1461000" />
-      <workItem from="1637953223025" duration="15751000" />
+      <workItem from="1637953223025" duration="20586000" />
     </task>
     <servers />
   </component>
