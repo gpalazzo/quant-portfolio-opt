@@ -1,1 +1,1 @@
-from .dummy_prm import dummy_primary
+from .yahoo_finance_prm import dummy_primary

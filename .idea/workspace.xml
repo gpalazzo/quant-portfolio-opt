@@ -4,10 +4,10 @@
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/po201_etl/conf/yahoo_finance/io.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/conf/yahoo_finance/io.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/input_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/utils/input_output.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/dummy_prm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/commons.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/utils/commons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1637951730577</updated>
       <workItem from="1637951734329" duration="1461000" />
-      <workItem from="1637953223025" duration="14162000" />
+      <workItem from="1637953223025" duration="15297000" />
     </task>
     <servers />
   </component>

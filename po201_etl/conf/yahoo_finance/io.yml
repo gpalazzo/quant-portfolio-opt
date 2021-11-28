@@ -9,3 +9,7 @@ yf_raw_db_name: "raw"
 # Intermediate
 yf_int_db_name: "intm"
 yf_int_tbl_name: "all_stocks_intm"
+
+# Primary
+yf_prm_db_name: "prm"
+yf_prm_tbl_name: "all_stocks_prm"
