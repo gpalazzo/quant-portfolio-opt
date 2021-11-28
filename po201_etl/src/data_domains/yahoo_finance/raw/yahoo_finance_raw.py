@@ -1,26 +1,30 @@
-import pandas as pd
-from sqlalchemy import create_engine
+from utils import dump_data_pgsql, read_data_pgsql, load_and_merge_ymls
+import yfinance as yf
 import os
+import time
 
 
-try:
-    df = pd.read_csv("/opt/airflow/data/yahoo_finance/raw/hdfc.csv")
+CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
+config = load_and_merge_ymls(paths=CONFIG_PATH)
 
-    engine = create_engine(
-        f"postgresql://{os.getenv('PGSQL_USERNAME')}:{os.getenv('PGSQL_PASSWORD')}@{os.getenv('PGSQL_HOST')}:{os.getenv('PGSQL_PORT')}/raw"
-    )
-    df.to_sql("hdfc", engine, if_exists="replace", index=False)
-    print("done!")
-
-except:
-    print("fail!")
+df = read_data_pgsql(
+    database=config["stocks_db_name"], tbl_name=config["stocks_tbl_name"]
+)
+stocks = df["stocks_name"].unique().tolist()
 
 
-try:
-    print("reading")
-    df = pd.read_sql_query('select * from "hdfc"', con=engine)
-    print(df.head())
+for i, stock in enumerate(stocks, 1):
 
-except Exception as e:
-    print("fail reading")
-    print(e.args)
+    time.sleep(2)
+
+    print(f"Parsing data for stock: {stock}")
+    print(f"Stock {i} out of {len(stocks)} stocks")
+    df = yf.download(stock, period="max")["Adj Close"].reset_index()
+
+    if df.empty:
+        print(f"Skipping stock: {stock} because it has no data")
+        continue
+
+    else:
+        df.loc[:, "yf_stock_name"] = stock
+        dump_data_pgsql(df=df, database=config["yf_raw_db_name"], yf_stock_name=stock)
