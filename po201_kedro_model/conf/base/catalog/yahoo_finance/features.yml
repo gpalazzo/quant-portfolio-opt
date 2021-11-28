@@ -1,4 +1,4 @@
 yf_tickers_fte:
   type: po201_kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
-  sql: "select * from fte.public.tickers"
+  sql: "select * from prm.public.all_stocks_prm"

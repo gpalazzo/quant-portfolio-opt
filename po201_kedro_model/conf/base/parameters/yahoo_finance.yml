@@ -5,3 +5,13 @@ month_roll_window:
   - 12
   - 24
   - 36
+  - 48
+  - 60
+
+# amount of days to consider data looking back
+# rational: get model running date and subtract the number here
+days_lookback: 2000
+
+# data series to remove if percentage of nulls above this threshold
+# 0.10 means 10%
+null_pct_cut: 0.10

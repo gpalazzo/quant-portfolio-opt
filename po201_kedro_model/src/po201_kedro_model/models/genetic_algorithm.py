@@ -132,6 +132,7 @@ def model_run(
     max_expected_return,
     min_expected_risk,
 ):
+
     ga_model = GeneticAlgorithm(
         initial_df=initial_df,
         qty_genes=qty_genes,
