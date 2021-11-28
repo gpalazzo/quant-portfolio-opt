@@ -1,1 +1,1 @@
-from .yahoo_finance_int import dummy_intermediate
+from .yahoo_finance_int import run_yahoo_finance_intermediate
