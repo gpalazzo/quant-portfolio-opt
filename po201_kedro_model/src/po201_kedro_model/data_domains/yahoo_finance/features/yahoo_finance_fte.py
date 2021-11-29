@@ -18,8 +18,6 @@ def yahoo_finance_features(
         df=df_pre_processed, month_roll_window=month_roll_window
     )
 
-    breakpoint()
-
     return df_ftes
 
 
