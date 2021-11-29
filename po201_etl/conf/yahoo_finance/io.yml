@@ -1,15 +1,28 @@
-# ---------- STOCKS ---------- #
-stocks_db_name: "aux"
-stocks_tbl_name: "stock_names"
+# ---------- STOCK NAMES ---------- #
+yf_stock_names_db_name: "aux"
+yf_stock_names_tbl_name: "stock_names"
 
-# ---------- YAHOO FINANCE ---------- #
+# ---------- STOCK NAMES ---------- #
 # Raw
-yf_raw_db_name: "raw"
+yf_raw_stock_prices_db_name: "raw"
 
 # Intermediate
-yf_int_db_name: "intm"
-yf_int_tbl_name: "all_stocks_intm"
+yf_int_stock_prices_db_name: "intm"
+yf_int_stock_prices_tbl_name: "all_stocks_prices_intm"
 
 # Primary
-yf_prm_db_name: "prm"
-yf_prm_tbl_name: "all_stocks_prm"
+yf_prm_stock_prices_db_name: "prm"
+yf_prm_stock_prices_tbl_name: "all_stocks_prices_prm"
+
+# ---------- STOCK MARKET CAP ---------- #
+# Raw
+yf_raw_stock_mktcap_db_name: "raw"
+yf_raw_stock_mktcap_tbl_name: "all_stocks_mktcap_raw"
+
+# Intermediate
+yf_int_stock_mktcap_db_name: "intm"
+yf_int_stock_mktcap_tbl_name: "all_stocks_mktcap_intm"
+
+# Primary
+yf_prm_stock_mktcap_db_name: "prm"
+yf_prm_stock_mktcap_tbl_name: "all_stocks_mktcap_prm"
