@@ -8,7 +8,18 @@ import os
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 
 
-def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
+def run_stock_names_raw():
+    config = load_and_merge_ymls(paths=CONFIG_PATH)
+    stocks = _parse_stocks_index()
+    df = pd.DataFrame({"stocks_name": stocks})
+    dump_data_pgsql(
+        df=df,
+        database=config["yf_stock_names_db_name"],
+        tbl_name=config["yf_stock_names_tbl_name"],
+    )
+
+
+def _parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
     """This function uses the `IBXX.SA` index only to find the companies within IBXX
 
     Args:
@@ -30,12 +41,3 @@ def parse_stocks_index(target_index: str = "IBXX.SA") -> List[str]:
     df = pd.read_html(response.text)[0]
 
     return list(set(df["Symbol"]))
-
-
-def run_stock_names_raw():
-    config = load_and_merge_ymls(paths=CONFIG_PATH)
-    stocks = parse_stocks_index()
-    df = pd.DataFrame({"stocks_name": stocks})
-    dump_data_pgsql(
-        df=df, database=config["stocks_db_name"], tbl_name=config["stocks_tbl_name"]
-    )
