@@ -30,9 +30,12 @@ def _fte_pre_processing(
     # filter date
     df_filter_date = df[df["date"] >= lower_bound_date]
 
+    # drop rows with date not being at beginning of month
+    df_filter_bom = df_filter_date[df_filter_date["date"].dt.is_month_start]
+
     # filter null percentage
-    _mask = df_filter_date.isna().mean()
-    df_filter_null = df_filter_date.loc[:, _mask <= null_pct_cut]
+    _mask = df_filter_bom.isna().mean()
+    df_filter_null = df_filter_bom.loc[:, _mask <= null_pct_cut]
 
     # input nulls
     #   get columns with null value
@@ -53,6 +56,7 @@ def _calculate_rolling_windows(
     new_df = pd.DataFrame()
 
     for mon in month_roll_window:
+        print(f"Calculating {mon} months return window")
         temp = (df.iloc[0, 1:] - df.iloc[mon, 1:]) / (df.iloc[mon, 1:])
         idx.append(str(mon) + "_mon_return")
         new_df = pd.concat([new_df, temp.to_frame().T], ignore_index=True)
