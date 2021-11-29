@@ -21,7 +21,7 @@ def run_yahoo_finance_raw():
 
         print(f"Parsing data for stock: {stock}")
         print(f"Stock {i} out of {len(stocks)} stocks")
-        df = yf.download(stock, period="max")["Adj Close"].reset_index()
+        df = yf.download(stock, period="max", interval="1mo")["Adj Close"].reset_index()
 
         if df.empty:
             print(f"Skipping stock: {stock} because it has no data")
