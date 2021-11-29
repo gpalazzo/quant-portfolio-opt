@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/conf/yahoo_finance/io.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/conf/yahoo_finance/io.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/dags/yahoo_finance_dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/dags/yahoo_finance_dag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/model_inputs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
