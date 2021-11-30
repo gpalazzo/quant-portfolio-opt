@@ -1,8 +1,8 @@
 from amplpy import AMPL, Environment
 
-ampl = AMPL(Environment("/Users/guilhermepalazzo/Desktop/ampl_macos64"))
+ampl = AMPL(Environment("/home/ampl/ampl_linux-intel64"))
 
-base_path = "/Users/guilhermepalazzo/Google Drive/academico/MSc_ITA_UNIFESP/disciplinas/introdução_PO/projeto_final/exemplos_testados/markowitz_dummy"
+base_path = "/home/ampl/src/teste_dummy"
 
 ampl.read(f"{base_path}/markowitz_example.mod")
 ampl.readData(f"{base_path}/markowitz_example.dat")
