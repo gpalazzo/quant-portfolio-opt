@@ -130,6 +130,19 @@ services:
     networks:
       - po201_network
 
+  ampl-model:
+    build:
+      context: ./po201_ampl_model
+      dockerfile: Dockerfile
+    container_name: po201_ampl_model
+    ports:
+      - "8889:8888"
+    volumes:
+      - ./po201_ampl_model:/home/ampl
+    restart: always
+    networks:
+      - po201_network
+
 volumes:
   airflow-pgsql-volume:
   storage-pgsql-volume:

@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/run.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +48,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -87,5 +89,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
