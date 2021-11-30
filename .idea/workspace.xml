@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/run.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
