@@ -73,10 +73,6 @@ param omega {1..card(A), A};
 # ********** BL - POSTERIOR **********
 param tal = 1 / (card(ROWS) - card(A));
 
-# tal x matriz covariância (falta calcular inversa)
-param tal_covar_inv {i in A, j in A} = (prior_cov_ret[i, j] * tal);
-#param bl_covar = 
-
 # ********** MODELO **********
 # variável de decisão
 var w{A} >= 0; #peso de cada ativo da carteira
