@@ -5,6 +5,7 @@ from datetime import timedelta, datetime
 
 def yahoo_finance_features(
     df: pd.DataFrame,
+    yf_ticker_names_priorities: pd.DataFrame,
     month_roll_window: List[int],
     days_lookback: int,
     null_pct_cut: float,
@@ -18,7 +19,38 @@ def yahoo_finance_features(
         df=df_pre_processed, month_roll_window=month_roll_window
     )
 
-    return df_ftes
+    prioritized_stocks = (
+        yf_ticker_names_priorities[yf_ticker_names_priorities["priority"] == "yes"][
+            "stocks_name"
+        ]
+        .unique()
+        .tolist()
+    )
+    prioritized_stocks = [
+        stock.lower().replace(".sa", "") for stock in prioritized_stocks
+    ]
+
+    intersect_cols = list(
+        set(prioritized_stocks).intersection(df_ftes.columns.tolist())
+    )
+
+    df_prioritized = df_ftes[intersect_cols]
+
+    # **** THIS IS FOR AMPL ****
+    path = "/home/kedro/data/05_model_input"
+    _tmp = df_prioritized.copy()
+    _tmp2 = df_ftes.copy()
+
+    _tmp = _tmp.reset_index(drop=True)
+    _tmp.index = _tmp.index + 1
+    _tmp2 = _tmp2.reset_index(drop=True)
+    _tmp2.index = _tmp2.index + 1
+
+    _tmp2.to_csv(f"{path}/all_ibxx_stocks.dat", sep=" ")
+    _tmp.to_csv(f"{path}/prioritized_ibxx_stocks.dat", sep=" ")
+    # **** THIS IS FOR AMPL ****
+
+    return df_prioritized
 
 
 def yf_select_mktcap_tickers(
@@ -31,15 +63,20 @@ def yf_select_mktcap_tickers(
         df_stocks_mktcap["stocks"].isin(selected_stocks)
     ]
 
-    # # transpose original dataframe
-    # df_t = df_stocks_selected_mktcap.T
-    #
-    # # get col names (stocks)
-    # cols = df_t.values[0].tolist()
-    #
-    # # rename columns and drop index 0
-    # df_t.columns = cols
-    # df_t = df_t.reset_index(drop=True).drop([0])
+    # **** THIS IS FOR AMPL ****
+    path = "/home/kedro/data/05_model_input"
+
+    # transpose original dataframe
+    df_t = df_stocks_selected_mktcap.T
+
+    # get col names (stocks)
+    cols = df_t.values[0].tolist()
+
+    # rename columns and drop index 0
+    df_t.columns = cols
+    df_t = df_t.reset_index(drop=True).drop([0])
+    df_t.to_csv(f"{path}/prioritized_ibxx_mktcap.dat", sep=" ")
+    # **** THIS IS FOR AMPL ****
 
     return df_stocks_selected_mktcap
 
