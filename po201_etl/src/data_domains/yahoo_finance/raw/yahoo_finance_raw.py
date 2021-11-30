@@ -12,14 +12,15 @@ df_stock_names = read_data_pgsql(
     database=config["yf_stock_names_db_name"],
     tbl_name=config["yf_stock_names_tbl_name"],
 )
-stocks = df_stock_names["stocks_name"].unique().tolist()
 
 
 def run_yf_stock_prices_raw():
 
+    stocks = df_stock_names["stocks_name"].unique().tolist()
+
     for i, stock in enumerate(stocks, 1):
 
-        time.sleep(2)
+        time.sleep(1)
 
         print(f"Parsing data for stock: {stock}")
         print(f"Stock {i} out of {len(stocks)} stocks")
@@ -41,6 +42,12 @@ def run_yf_stock_prices_raw():
 
 
 def run_yf_mktcap_raw():
+
+    stocks = (
+        df_stock_names[df_stock_names["priority"] == "yes"]["stocks_name"]
+        .unique()
+        .tolist()
+    )
 
     mktcap_dict = {}
 

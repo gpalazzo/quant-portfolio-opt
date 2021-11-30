@@ -1,5 +1,5 @@
 risk_free_rate: 0.0775 #Selic defined in 2021-10-27
-qty_stocks: 24
+qty_stocks: 21
 population_size: 100
 qty_iterations: 40
 max_expected_return: 0.35
