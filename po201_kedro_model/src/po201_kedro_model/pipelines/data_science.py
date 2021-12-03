@@ -48,7 +48,7 @@ def data_science_pipeline():
                         "params:max_expected_return",
                         "params:min_expected_risk",
                     ],
-                    outputs="dummy",
+                    outputs=["model_results", "model_runtime"],
                     name="process_ga_model",
                 )
             ],

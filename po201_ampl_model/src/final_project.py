@@ -236,16 +236,15 @@ for i, assets_comb in enumerate(assets_comb_list, 1):
 
     dump_data_pgsql(df=final_df, database="aux", tbl_name="ampl_report")
 
-    if i == 5000:
-        break
+    # if i == 10:
+    #     break
 
 time_df = pd.DataFrame(
     {"uuid": session_uuid, "run_time_sec": time() - start}, index=[0]
 )
 dump_data_pgsql(df=time_df, database="aux", tbl_name="ampl_run_time")
 
-df = read_data_pgsql(database="aux", tbl_name="ampl_report")
-df_filter = df[df["uuid"] == str(session_uuid)]
-max_return = df_filter["return"].max()
-df_final = df_filter[df_filter["return"] == max_return]
-breakpoint()
+# df = read_data_pgsql(database="aux", tbl_name="ampl_report")
+# df_filter = df[df["uuid"] == str(session_uuid)]
+# max_return = df_filter["return"].max()
+# df_final = df_filter[df_filter["return"] == max_return]

@@ -1,5 +1,9 @@
 import numpy as np
 import pandas as pd
+import uuid
+from datetime import datetime, timedelta
+from functools import reduce
+import time
 
 
 class GeneticAlgorithm:
@@ -133,6 +137,8 @@ def model_run(
     min_expected_risk,
 ):
 
+    start = time.time()
+
     ga_model = GeneticAlgorithm(
         initial_df=initial_df,
         qty_genes=qty_genes,
@@ -168,24 +174,68 @@ def model_run(
 
         _iteration += 1
 
-    build_report(
+    return build_report(
         _initial_df=initial_df,
         qty_genes=qty_genes,
         _elite=_elite,
         _expected_returns=_expected_returns,
         _expected_risk=_expected_risk,
+        _rf_rate=risk_free_rate,
+        start_time=start,
     )
 
 
-def build_report(_initial_df, qty_genes, _elite, _expected_returns, _expected_risk):
+def build_report(
+    _initial_df,
+    qty_genes,
+    _elite,
+    _expected_returns,
+    _expected_risk,
+    _rf_rate,
+    start_time,
+):
+
+    end = time.time()
+    uuid_session = uuid.uuid4()
+    info_df = pd.DataFrame(
+        {"uuid": uuid_session, "run_timestamp": datetime.now() - timedelta(hours=3)},
+        index=[0],
+    )
+
+    run_time_df = pd.DataFrame(
+        {"uuid": uuid_session, "run_time_sec": end - start_time},
+        index=[0],
+    )
+
+    weights = {}
+
     print("Portfolio of stocks after all the iterations:\n")
-    [print(_initial_df.columns[i], ":", _elite[0][i]) for i in list(range(qty_genes))]
-    print(
-        f"Sum of total weights: {sum([_elite[0][i] for i in list(range(qty_genes))])}"
-    )
+    for i in list(range(qty_genes)):
+        weights[_initial_df.columns[i]] = _elite[0][i]
+    print(f"Sum of total weights: {sum(weights.values())}")
+
+    weights_df = pd.DataFrame(weights, index=[0])
 
     print(
         "\nExpected returns of {} with risk of {}\n".format(
             _expected_returns, _expected_risk
         )
     )
+
+    _sharpe = (_expected_returns - _rf_rate) / _expected_risk
+
+    _df_aux = pd.DataFrame(
+        {"risk": _expected_risk, "return": _expected_returns, "sharpe_ratio": _sharpe},
+        index=[0],
+    )
+
+    dfs = [info_df, weights_df, _df_aux]
+
+    final_df = reduce(
+        lambda left, right: pd.merge(
+            left, right, left_index=True, right_index=True, how="outer"
+        ),
+        dfs,
+    )
+
+    return final_df, run_time_df
