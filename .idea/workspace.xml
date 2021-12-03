@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/diet.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/diet.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/helper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/po201_ampl_model/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.dat" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.mod" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

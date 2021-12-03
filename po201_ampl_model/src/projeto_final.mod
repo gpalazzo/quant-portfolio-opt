@@ -27,9 +27,7 @@
 #	6.1 -> retorno médio em todas as janelas de tempo -- (OK)
 #	6.2 -> diferença entre as janelas de tempo e a média -- (OK)
 #	6.3 -> covariância dos retornos -- (OK)
-#	6.4 -> desvio padrão
-
-reset;
+#	6.4 -> desvio padrão -- (OK)
 
 # ********** SETUP BASE **********
 
@@ -48,6 +46,9 @@ param mktcap {1..1, A}; #capitalização de mercado dos ativos
 #retorno médio considerando todas as janelas de tempo
 # potencial problema aqui: estou fazendo média de uma janela rolante que já é uma média
 param mean_ret {j in A} = (sum {i in ROWS} monthly_ret[i, j]) / card(ROWS);
+
+param global_mean = (sum {a in A} mean_ret[a]) / card(A); 
+param portfolio_stdev = sqrt((sum {a in A} (mean_ret[a] - global_mean)^2) / (card(A) - 1));
 
 param diff_monthly_mean {i in ROWS, j in A} = monthly_ret[i, j] - mean_ret[j];
 
@@ -72,18 +73,19 @@ param omega {1..card(A), A};
 
 # ********** BL - POSTERIOR **********
 param tal = 1 / (card(ROWS) - card(A));
+#param covar_bl {1..card(A), 1..card(A)};
+#param mean_bl {1..card(A)};
 
 # ********** MODELO **********
 # variável de decisão
-var w{A} >= 0; #peso de cada ativo da carteira
+# aqui será tratado como parâmetro pois o max Sharpe Ratio será calculado pelo Python
+param w {1..1, A}; #peso de cada ativo da carteira
 
 # objetivo
-#maximize Sharpe_Ratio {a in A}: (sum {i in ROWS} w[a] * monthly_ret[i, a] - rf_rate) / 
+param Sharpe_Ratio = sum {a in A} (w[1, a] * mean_ret[a] - rf_rate) / portfolio_stdev;
 
 # restrições
-subject to total_peso_um: sum {a in A} w[a] = 1;
-subject to nao_alavancagem {a in A}: 0 <= w[a] <= 1;
-subject to ret_positivo {a in A}: sum {i in ROWS} w[a] * monthly_ret[i, a] >= 0;
-
-# ***** OBS: aparentemente o objetivo de maximização se dará por um while loop levando em conta o risco e o retorno *****
+#subject to total_peso_um: sum {a in A} w[1, a] = 1;
+#subject to nao_alavancagem {a in A}: 0 <= w[1, a] <= 1;
+#subject to ret_positivo {a in A}: sum {i in ROWS} w[1, a] * monthly_ret[i, a] >= 0;
 

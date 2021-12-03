@@ -135,6 +135,8 @@ services:
       context: ./po201_ampl_model
       dockerfile: Dockerfile
     container_name: po201_ampl_model
+    env_file:
+      - ./po201_ampl_model/ampl_base.env
     ports:
       - "8889:8888"
     volumes:

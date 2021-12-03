@@ -1,14 +1,44 @@
 from amplpy import AMPL, Environment
+import pandas as pd
+
 
 ampl = AMPL(Environment("/home/ampl/ampl_linux-intel64"))
 
 base_path = "/home/ampl/src/teste_dummy"
 
-ampl.read(f"{base_path}/markowitz_example.mod")
-ampl.readData(f"{base_path}/markowitz_example.dat")
+ampl.read(f"{base_path}/diet.mod")
+ampl.readData(f"{base_path}/diet.dat")
 
-ampl.solve()
+ampl.setOption("solver", "cplex")
 
-obj = ampl.getObjective("Risk")
+x_values = {
+    (1, 1): 3,
+    (6, 3): -1,
+    (99, 5): 15,
+}
 
-print(f"Risco: {obj.value()}")
+df = pd.DataFrame.from_dict(x_values, orient="index", columns=["value"])
+print("df:", df)
+
+ampl.param["x"] = df
+
+breakpoint()
+
+x = ampl.getParameter("x")
+
+breakpoint()
+
+
+# ampl.solve()
+
+# obj = ampl.getObjective("Total_Cost")
+#
+# print(f"Cost: {obj.value()}")
+#
+# cost = ampl.getParameter("cost")
+#
+# breakpoint()
+#
+# cost.setValues({"BEEF": 5.01, "HAM": 4.55})
+#
+# # cost.getValues().toList()
