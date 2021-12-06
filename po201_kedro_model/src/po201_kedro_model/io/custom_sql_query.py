@@ -181,4 +181,4 @@ class CustomSQLQueryDataSet(AbstractDataSet):
     def _save(self, data: pd.DataFrame) -> None:
         database, schema, table = self._parse_query_source()
         _con = self._load_args["con"].replace(os.getenv("PGSQL_DATABASE"), database)
-        data.to_sql(table, _con, if_exists="replace", index=False)
+        data.to_sql(table, _con, if_exists="append", index=False)
