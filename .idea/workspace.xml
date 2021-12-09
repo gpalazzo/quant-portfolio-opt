@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/build_final_values.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -66,6 +65,7 @@
       <workItem from="1637953223025" duration="22531000" />
       <workItem from="1638196202297" duration="501000" />
       <workItem from="1638197128421" duration="839000" />
+      <workItem from="1639077542440" duration="260000" />
     </task>
     <servers />
   </component>
