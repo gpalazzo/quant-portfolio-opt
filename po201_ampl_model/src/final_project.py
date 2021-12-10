@@ -33,13 +33,13 @@ def _build_report_dfs_list(total_run_time, solve_time) -> List[pd.DataFrame]:
     _solve_time_df = pd.DataFrame({"solve_time_min": solve_time}, index=[0])
     _total_runtime_df = pd.DataFrame({"total_run_time_min": total_run_time}, index=[0])
 
-    mean = ampl.getVariable("Mean").getValues().toList()[0]
+    mean = ampl.getVariable("media_portfolio").getValues().toList()[0]
     mean_df = pd.DataFrame({"mean": mean}, index=[0])
 
-    weights = ampl.getVariable("w").getValues().toList()
+    weights = ampl.getVariable("pesos").getValues().toList()
     weights_df = ampl_list_to_pandas_df(ampl_list=weights, n_stocks=len(weights))
 
-    risk = ampl.getObjective("Risk").value()
+    risk = ampl.getObjective("risco_portfolio").value()
     risk_df = pd.DataFrame({"risk": risk}, index=[0])
 
     return [_time_df, _total_runtime_df, _solve_time_df, mean_df, risk_df, weights_df]
@@ -76,7 +76,7 @@ return_df_ampl = pandas_df_to_indexed_ampl_format(df=final_df)
 
 ampl.set["A"] = np.array(final_df.columns.tolist())
 ampl.set["T"] = np.array(index_fte_list)
-ampl.param["Rets"] = return_df_ampl
+ampl.param["retorno_ativos"] = return_df_ampl
 
 ampl.setOption("solver", "cplex")
 
