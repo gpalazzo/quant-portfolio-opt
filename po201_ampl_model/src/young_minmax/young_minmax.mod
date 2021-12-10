@@ -3,8 +3,8 @@ reset;
 # default values
 param u default 1.0; # Upper limit for investing in a single share
 param W default 50000.0; # budget
-param G default 0.035; # target return of the portfolio
-param T default 67; # number of months
+param G default 0.1; # target return of the portfolio
+param T default 100000; # number of months
 
 # sets definition
 set A; #assets

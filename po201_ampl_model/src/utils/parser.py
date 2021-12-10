@@ -1,7 +1,8 @@
 import pandas as pd
 
 
-def ampl_list_to_pandas_df(ampl_list, n_stocks: int = 21, cols_as_index: bool = False):
+def ampl_list_to_pandas_df(ampl_list, n_stocks, cols_as_index: bool = False):
+
     _stocks = []
     _values = []
     df = pd.DataFrame()
@@ -9,8 +10,8 @@ def ampl_list_to_pandas_df(ampl_list, n_stocks: int = 21, cols_as_index: bool = 
     for i, elem in enumerate(ampl_list, 1):
 
         if i % n_stocks == 0:
-            _stocks.append(elem[1])
-            _values.append(elem[2])
+            _stocks.append(elem[0])
+            _values.append(elem[1])
             _aux_dict = {"stocks": _stocks, "values": _values}
             _tmp_df = pd.DataFrame.from_dict(_aux_dict)
             _cols = _tmp_df.T.values[0].tolist()
@@ -23,8 +24,8 @@ def ampl_list_to_pandas_df(ampl_list, n_stocks: int = 21, cols_as_index: bool = 
             _values = []
 
         else:
-            _stocks.append(elem[1])
-            _values.append(elem[2])
+            _stocks.append(elem[0])
+            _values.append(elem[1])
 
     if cols_as_index:
         df.index = df.columns.tolist()
@@ -38,9 +39,9 @@ def pandas_df_to_indexed_ampl_format(df: pd.DataFrame) -> pd.DataFrame:
 
     data_values = {}
 
-    for i, row in df.iterrows():
+    for j, row in df.iterrows():
         for k in range(0, len(row)):
-            _key = (i, row.index[k])
-            data_values[_key] = row[k + 1]
+            _key = (j + 1, row.index[k])
+            data_values[_key] = row[k]
 
     return pd.DataFrame.from_dict(data_values, orient="index", columns=["value"])
