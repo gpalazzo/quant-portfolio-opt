@@ -76,20 +76,23 @@ def _yf_fte_pre_processing(
     # filter date
     df_filter_date = df[df["date"] >= lower_bound_date]
 
-    # drop rows with date not being at beginning of month
-    df_filter_bom = df_filter_date[df_filter_date["date"].dt.is_month_start]
-
     # filter null percentage
-    _mask = df_filter_bom.isna().mean()
-    df_filter_null = df_filter_bom.loc[:, _mask <= null_pct_cut]
+    _mask = df_filter_date.isna().mean()
+    df_filter_null = df_filter_date.loc[:, _mask <= null_pct_cut]
 
     # input nulls
     #   get columns with null value
     null_cols = df_filter_null.columns[df_filter_null.isna().any()].tolist()
 
-    #   input with linear interpolation
+    #   input with linear interpolation and backfill
     for col in null_cols:
-        df_filter_null[col] = df_filter_null[col].interpolate(method="linear")
+        df_filter_null[col] = (
+            df_filter_null[col].interpolate(method="linear").fillna(method="bfill")
+        )
+
+    assert (
+        df_filter_null.isnull().sum().sum() == 0
+    ), "There's still missing values, verify"
 
     return df_filter_null
 

@@ -22,7 +22,7 @@ month_roll_window:
 
 # amount of days to consider data looking back
 # rational: get model running date and subtract the number here
-days_lookback: 2000
+days_lookback: 3700
 
 # data series to remove if percentage of nulls above this threshold
 # 0.10 means 10%
