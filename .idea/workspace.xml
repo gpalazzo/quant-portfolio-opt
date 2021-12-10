@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/yahoo_finance.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/yahoo_finance.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
       <workItem from="1637953223025" duration="22531000" />
       <workItem from="1638196202297" duration="501000" />
       <workItem from="1638197128421" duration="839000" />
-      <workItem from="1639077542440" duration="20587000" />
+      <workItem from="1639077542440" duration="23030000" />
     </task>
     <servers />
   </component>

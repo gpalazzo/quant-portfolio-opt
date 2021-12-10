@@ -2,6 +2,8 @@ from utils import dump_data_pgsql, read_data_pgsql, load_and_merge_ymls
 import os
 from functools import reduce
 import pandas as pd
+from sqlalchemy.exc import ProgrammingError
+from time import sleep
 
 
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
@@ -20,11 +22,18 @@ def run_yf_stock_prices_intermediate():
     dfs = []
 
     for stock in stocks:
-        df = read_data_pgsql(
-            database=config["yf_raw_stock_prices_db_name"], yf_stock_name=stock
-        )
-        if df.empty:
+
+        # give PGSQL some time to close connection, otherwise it will fail due to too many connections
+        sleep(0.5)
+
+        try:
+            df = read_data_pgsql(
+                database=config["yf_raw_stock_prices_db_name"], yf_stock_name=stock
+            )
+        # in the project's context, it means the table doesn't exist
+        except ProgrammingError:
             continue
+
         df = df.rename(columns={"Adj Close": df["yf_stock_name"].unique()[0]}).drop(
             columns=["yf_stock_name"]
         )
