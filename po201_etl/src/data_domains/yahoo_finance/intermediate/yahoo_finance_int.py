@@ -7,15 +7,15 @@ import pandas as pd
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 config = load_and_merge_ymls(paths=CONFIG_PATH)
 
-df_stock_names = read_data_pgsql(
-    database=config["yf_stock_names_db_name"],
-    tbl_name=config["yf_stock_names_tbl_name"],
-)
-
-stocks = df_stock_names["stocks_name"].unique().tolist()
-
 
 def run_yf_stock_prices_intermediate():
+
+    df_stock_names = read_data_pgsql(
+        database=config["yf_stock_names_db_name"],
+        tbl_name=config["yf_stock_names_tbl_name"],
+    )
+
+    stocks = df_stock_names["stocks_name"].unique().tolist()
 
     dfs = []
 

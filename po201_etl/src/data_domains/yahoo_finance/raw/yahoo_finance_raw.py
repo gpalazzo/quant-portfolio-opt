@@ -8,13 +8,13 @@ import time
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 config = load_and_merge_ymls(paths=CONFIG_PATH)
 
-df_stock_names = read_data_pgsql(
-    database=config["yf_stock_names_db_name"],
-    tbl_name=config["yf_stock_names_tbl_name"],
-)
-
 
 def run_yf_stock_prices_raw():
+
+    df_stock_names = read_data_pgsql(
+        database=config["yf_stock_names_db_name"],
+        tbl_name=config["yf_stock_names_tbl_name"],
+    )
 
     stocks = df_stock_names["stocks_name"].unique().tolist()
 
@@ -24,7 +24,7 @@ def run_yf_stock_prices_raw():
 
         print(f"Parsing data for stock: {stock}")
         print(f"Stock {i} out of {len(stocks)} stocks")
-        df_stock_prices = yf.download(stock, period="max", interval="1mo")[
+        df_stock_prices = yf.download(stock, period="max", interval="1d")[
             "Adj Close"
         ].reset_index()
 
@@ -43,6 +43,11 @@ def run_yf_stock_prices_raw():
 
 def run_yf_mktcap_raw():
 
+    df_stock_names = read_data_pgsql(
+        database=config["yf_stock_names_db_name"],
+        tbl_name=config["yf_stock_names_tbl_name"],
+    )
+
     stocks = (
         df_stock_names[df_stock_names["priority"] == "yes"]["stocks_name"]
         .unique()
@@ -52,6 +57,9 @@ def run_yf_mktcap_raw():
     mktcap_dict = {}
 
     for i, stock in enumerate(stocks, 1):
+
+        print(f"Parsing data for stock: {stock}")
+        print(f"Stock {i} out of {len(stocks)} stocks")
 
         try:
             stock_mktcap = yf.Ticker(stock).info["marketCap"]
