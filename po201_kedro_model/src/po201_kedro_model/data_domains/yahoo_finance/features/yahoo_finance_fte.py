@@ -36,20 +36,6 @@ def yahoo_finance_features(
 
     df_prioritized = df_ftes[intersect_cols]
 
-    # **** THIS IS FOR AMPL ****
-    path = "/home/kedro/data/05_model_input"
-    _tmp = df_prioritized.copy()
-    _tmp2 = df_ftes.copy()
-
-    _tmp = _tmp.reset_index(drop=True)
-    _tmp.index = _tmp.index + 1
-    _tmp2 = _tmp2.reset_index(drop=True)
-    _tmp2.index = _tmp2.index + 1
-
-    _tmp2.to_csv(f"{path}/all_ibxx_stocks.dat", sep=" ")
-    _tmp.to_csv(f"{path}/prioritized_ibxx_stocks.dat", sep=" ")
-    # **** THIS IS FOR AMPL ****
-
     return df_prioritized
 
 

@@ -9,7 +9,7 @@ from utils import (
     ampl_list_to_pandas_df,
     pandas_df_to_indexed_ampl_format,
     dump_data_pgsql,
-    assets_list,
+    read_data_pgsql,
 )
 
 
@@ -57,22 +57,25 @@ base_path = "/home/ampl/src"
 print("Reading mod and dat files...")
 ampl.read(f"{base_path}/markowitz.mod")
 
+print("Reading data from Kedro features...")
+df_fte = read_data_pgsql(database="mi", tbl_name="master_table")
+
 print("Parsing assets list...")
-# AQUI VEM O CÓDIGO QUE LÊ A LISTA DE ATIVOS DA TABELA DE FEATURES DO KEDRO!!
-# POR ORA ESTOU USANDO UMA LISTA MOCKADA
+assets_fte_list = df_fte.columns.tolist()
+index_fte_list = [index + 1 for index in df_fte.index.tolist()]
 
 print("Generating numpy matrix and pandas df...")
 # numpy matrix
-matrix = _generate_random_matrix(nrows=10000, ncols=len(assets_list))
-df = pd.DataFrame(matrix, columns=assets_list)
+matrix = _generate_random_matrix(nrows=len(index_fte_list), ncols=len(assets_fte_list))
+df = pd.DataFrame(matrix, columns=[f"{col}_fake" for col in assets_fte_list])
 
-index_list = [index + 1 for index in df.index.tolist()]
+final_df = pd.concat([df_fte, df], axis=1)
 
 print("Parsing pandas df to ampl param format...")
-return_df_ampl = pandas_df_to_indexed_ampl_format(df=df)
+return_df_ampl = pandas_df_to_indexed_ampl_format(df=final_df)
 
-ampl.set["A"] = np.array(assets_list)
-ampl.set["T"] = np.array(index_list)
+ampl.set["A"] = np.array(final_df.columns.tolist())
+ampl.set["T"] = np.array(index_fte_list)
 ampl.param["Rets"] = return_df_ampl
 
 ampl.setOption("solver", "cplex")
@@ -100,4 +103,6 @@ final_df = reduce(
     ),
 )
 
-dump_data_pgsql(df=final_df, database="aux", tbl_name="ampl_markowitz")
+dump_data_pgsql(
+    df=final_df, database="aux", tbl_name="ampl_markowitz", append_data=False
+)
