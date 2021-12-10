@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/teste.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/young_minmax.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/input_output.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.dat" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.mod" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/young_minmax.dat" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/young_minmax.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/young_minmax.mod" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/young_minmax/young_minmax.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/projeto_final.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/diet.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/diet.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/markowitz_example.mod" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/markowitz.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/teste_dummy/teste_dummy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/utils/helper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +61,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/po201_ampl_model/src" />
       <recent name="$PROJECT_DIR$/po201_etl/conf/yahoo_finance" />
     </key>
   </component>
@@ -73,7 +77,7 @@
       <workItem from="1637953223025" duration="22531000" />
       <workItem from="1638196202297" duration="501000" />
       <workItem from="1638197128421" duration="839000" />
-      <workItem from="1639077542440" duration="10829000" />
+      <workItem from="1639077542440" duration="13190000" />
     </task>
     <servers />
   </component>

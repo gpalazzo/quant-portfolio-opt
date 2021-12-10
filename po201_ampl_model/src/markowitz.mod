@@ -1,5 +1,5 @@
 set A; #assets
-set T := {1..100};
+set T; #total lines of dataframe
 
 param Rets {T, A}; #returns on assets
 param mean {j in A} = (sum {i in T} Rets[i, j]) / card(T);
@@ -13,4 +13,4 @@ minimize Risk: sum {i in A} (w[i] * (sum {j in A} Covar[i, j] * w[j]));
 
 subject to TotalOne: sum {j in A} w[j] = 1;
 subject to LongOnly {j in A}: 0 <= w[j] <= 1;
-subject to Reve: Mean >= 0.035;
+subject to Reve: Mean >= 0.05;
