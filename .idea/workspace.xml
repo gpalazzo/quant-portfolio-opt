@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +48,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/po201_ampl_model/src" />
       <recent name="$PROJECT_DIR$/po201_etl/conf/yahoo_finance" />
     </key>
   </component>
@@ -65,7 +64,7 @@
       <workItem from="1637953223025" duration="22531000" />
       <workItem from="1638196202297" duration="501000" />
       <workItem from="1638197128421" duration="839000" />
-      <workItem from="1639077542440" duration="260000" />
+      <workItem from="1639077542440" duration="13262000" />
     </task>
     <servers />
   </component>
