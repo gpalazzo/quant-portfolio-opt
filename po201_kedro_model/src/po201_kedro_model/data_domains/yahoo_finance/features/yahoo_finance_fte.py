@@ -1,11 +1,11 @@
 import pandas as pd
+import numpy as np
 from typing import List
 from datetime import timedelta, datetime
 
 
 def yahoo_finance_features(
     df: pd.DataFrame,
-    yf_ticker_names_priorities: pd.DataFrame,
     month_roll_window: List[int],
     days_lookback: int,
     null_pct_cut: float,
@@ -19,24 +19,7 @@ def yahoo_finance_features(
         df=df_pre_processed, month_roll_window=month_roll_window
     )
 
-    prioritized_stocks = (
-        yf_ticker_names_priorities[yf_ticker_names_priorities["priority"] == "yes"][
-            "stocks_name"
-        ]
-        .unique()
-        .tolist()
-    )
-    prioritized_stocks = [
-        stock.lower().replace(".sa", "") for stock in prioritized_stocks
-    ]
-
-    intersect_cols = list(
-        set(prioritized_stocks).intersection(df_ftes.columns.tolist())
-    )
-
-    df_prioritized = df_ftes[intersect_cols]
-
-    return df_prioritized
+    return df_ftes
 
 
 def yf_select_mktcap_tickers(
@@ -48,21 +31,6 @@ def yf_select_mktcap_tickers(
     df_stocks_selected_mktcap = df_stocks_mktcap[
         df_stocks_mktcap["stocks"].isin(selected_stocks)
     ]
-
-    # **** THIS IS FOR AMPL ****
-    path = "/home/kedro/data/05_model_input"
-
-    # transpose original dataframe
-    df_t = df_stocks_selected_mktcap.T
-
-    # get col names (stocks)
-    cols = df_t.values[0].tolist()
-
-    # rename columns and drop index 0
-    df_t.columns = cols
-    df_t = df_t.reset_index(drop=True).drop([0])
-    df_t.to_csv(f"{path}/prioritized_ibxx_mktcap.dat", sep=" ")
-    # **** THIS IS FOR AMPL ****
 
     return df_stocks_selected_mktcap
 
@@ -104,10 +72,22 @@ def _yf_calculate_rolling_windows(
     idx = []
     new_df = pd.DataFrame()
 
-    for mon in month_roll_window:
-        print(f"Calculating {mon} months return window")
-        temp = (df.iloc[0, 1:] - df.iloc[mon, 1:]) / (df.iloc[mon, 1:])
-        idx.append(str(mon) + "_mon_return")
+    df = df.sort_values(by="date", ascending=True).reset_index(drop=True)
+
+    _max_date = df["date"].max().date()
+    _min_date = df["date"].min().date()
+    diff_days_weekdays = np.busday_count(_min_date, _max_date)
+
+    windows = month_roll_window + list(range(5, diff_days_weekdays, 5))
+    windows = windows[: windows.index(df.index.max())]
+
+    df.index = df.index + 1
+
+    for window in windows:
+        print(f"Calculating {window} days return window")
+        # verificar essa lógica, deveria ter dividido pelo valor inicial e não pelo final
+        temp = (df.iloc[0, 1:] - df.iloc[window, 1:]) / (df.iloc[window, 1:])
+        idx.append(str(window) + "_days_return")
         new_df = pd.concat([new_df, temp.to_frame().T], ignore_index=True)
 
     new_df.index = idx

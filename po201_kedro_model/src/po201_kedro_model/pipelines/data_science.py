@@ -15,7 +15,6 @@ def data_science_pipeline():
                     func=yahoo_finance_features,
                     inputs=[
                         "yf_tickers_fte",
-                        "yf_ticker_names_priorities",
                         "params:month_roll_window",
                         "params:days_lookback",
                         "params:null_pct_cut",
