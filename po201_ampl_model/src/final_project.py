@@ -66,8 +66,9 @@ index_fte_list = [index + 1 for index in df_fte.index.tolist()]
 
 print("Generating numpy matrix and pandas df...")
 # numpy matrix
-matrix = _generate_random_matrix(nrows=len(index_fte_list), ncols=len(assets_fte_list))
-df = pd.DataFrame(matrix, columns=[f"{col}_fake" for col in assets_fte_list])
+# matrix = _generate_random_matrix(nrows=len(index_fte_list), ncols=len(assets_fte_list))
+# df = pd.DataFrame(matrix, columns=[f"{col}_fake" for col in assets_fte_list])
+df = pd.DataFrame()
 
 final_df = pd.concat([df_fte, df], axis=1)
 
