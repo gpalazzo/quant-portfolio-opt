@@ -139,6 +139,7 @@ def model_run(
 
     start = time.time()
 
+    print("Instanciando o modelo...")
     ga_model = GeneticAlgorithm(
         initial_df=initial_df,
         qty_genes=qty_genes,
@@ -146,12 +147,17 @@ def model_run(
         risk_free_rate=risk_free_rate,
     )
 
+    print("Criando população inicial...")
     initial_pop = ga_model.build_init_population()
+
+    print("Selecionando população elite inicial...")
     _elite = ga_model.select_elite_population(population=initial_pop)
+
     _iteration = 0
     _expected_returns = 0
     _expected_risk = 1
 
+    print("Iniciando loop...")
     while (
         _expected_returns < max_expected_return and _expected_risk > min_expected_risk
     ):
@@ -161,9 +167,11 @@ def model_run(
 
         print("Iteration:", _iteration)
 
+        print("Cria próxima geração...")
         _population = ga_model.build_next_generation(
             _elite, ga_model.apply_arithmetic_crossover
         )
+        print("Selecionando população elite...")
         _elite = ga_model.select_elite_population(population=_population)
         _expected_returns = ga_model.mean_portfolio_return(_elite[0])
         _expected_risk = ga_model.var_portfolio_return(_elite[0])
