@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="007dcbbe-50c3-4eb5-9b3d-d52a0d0417d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/build_final_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/build_final_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -78,6 +78,7 @@
       <workItem from="1638196202297" duration="501000" />
       <workItem from="1638197128421" duration="839000" />
       <workItem from="1639077542440" duration="23030000" />
+      <workItem from="1639241588617" duration="6835000" />
     </task>
     <servers />
   </component>
