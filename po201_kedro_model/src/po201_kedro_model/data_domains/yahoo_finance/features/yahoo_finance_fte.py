@@ -79,7 +79,9 @@ def _yf_calculate_rolling_windows(
     diff_days_weekdays = np.busday_count(_min_date, _max_date)
 
     windows = month_roll_window + list(range(5, diff_days_weekdays, 5))
-    windows = windows[: windows.index(df.index.max())]
+
+    threshold = df.index.max()
+    windows = [window for window in windows if window <= threshold]
 
     df.index = df.index + 1
 
