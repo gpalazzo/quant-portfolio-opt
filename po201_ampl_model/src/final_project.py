@@ -13,6 +13,9 @@ from utils import (
 )
 
 
+SOLVER = "knitro"
+
+
 def _generate_random_matrix(nrows: int, ncols: int) -> np.ndarray:
 
     array = np.random.random((nrows, ncols))
@@ -79,11 +82,11 @@ ampl.set["A"] = np.array(final_df.columns.tolist())
 ampl.set["T"] = np.array(index_fte_list)
 ampl.param["retorno_ativos"] = return_df_ampl
 
-ampl.setOption("solver", "cplex")
+ampl.setOption("solver", SOLVER)
 
 start_solve_time = time()
 
-print("Starting solver...")
+print(f"Starting solver {SOLVER}...")
 ampl.solve()
 
 end_solve_time = time()
