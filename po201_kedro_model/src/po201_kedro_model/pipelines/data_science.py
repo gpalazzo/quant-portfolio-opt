@@ -15,7 +15,7 @@ def data_science_pipeline():
                     func=yahoo_finance_features,
                     inputs=[
                         "yf_tickers_fte",
-                        "params:month_roll_window",
+                        "params:days_roll_window",
                         "params:days_lookback",
                         "params:null_pct_cut",
                     ],
@@ -50,7 +50,6 @@ def data_science_pipeline():
                         "params:keep_parents",
                         "params:num_parents_mating",
                         "params:sol_per_pop",
-                        "params:min_expected_risk",
                     ],
                     outputs=["model_results", "model_runtime"],
                     name="process_ga_model",
