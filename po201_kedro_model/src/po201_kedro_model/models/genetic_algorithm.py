@@ -136,7 +136,7 @@ def model_run(initial_df, population_size, risk_free_rate, qty_iterations):
 
     start = time.time()
 
-    initial_df = initial_df.iloc[:, :30]
+    initial_df = initial_df.iloc[:, :50]
     qty_genes = len(initial_df.columns)
 
     print("Instanciando o modelo...")
