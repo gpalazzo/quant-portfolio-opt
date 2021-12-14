@@ -15,6 +15,8 @@ global ret_covar
 global ret_mean
 global ret_stdev
 
+RF_RATE = 0.075
+
 
 def model_run(
     initial_df,
@@ -28,7 +30,6 @@ def model_run(
     keep_parents,
     num_parents_mating,
     sol_per_pop,
-    min_expected_risk,
 ):
     def _calc_var_portfolio_ret(weights):
 
@@ -46,7 +47,7 @@ def model_run(
 
     def _calculate_fit_stats(weights):
 
-        mean_portfolio_ret = np.sum(np.multiply(weights, ret_mean))
+        mean_portfolio_ret = np.sum(weights * ret_mean)
         stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights))
 
         return mean_portfolio_ret, stdev_portfolio_ret
@@ -55,15 +56,11 @@ def model_run(
 
         print(f"Calculating fitness for solution {solution_idx}...")
         total_weight = sum(solution)
-        weights_norm = pd.Series(
-            [solution_norm / total_weight for solution_norm in solution]
-        )
+        solution = [solution_norm / total_weight for solution_norm in solution]
 
-        _risk = np.dot(weights_norm, np.dot(ret_covar, weights_norm))
+        mean_portfolio_ret, stdev_portfolio_ret = _calculate_fit_stats(weights=solution)
 
-        fitness = (1 / (_risk - min_expected_risk)) * -1
-
-        # breakpoint()
+        fitness = 1 / ((mean_portfolio_ret - RF_RATE) / stdev_portfolio_ret)
 
         print(f"Fitness value: {fitness}")
 
@@ -114,6 +111,8 @@ def model_run(
 
     total = sum(solution)
     weights_norm = [_solution / total for _solution in solution]
+
+    breakpoint()
 
     mean_portfolio_ret = np.sum(weights_norm * ret_mean)
     stdev_portfolio_ret = np.dot(weights_norm, np.dot(ret_covar, weights_norm))

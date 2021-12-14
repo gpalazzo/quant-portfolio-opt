@@ -5,7 +5,7 @@ crossover_type: "single_point" #ok
 mutation_type: "swap" #ok
 mutation_percent_genes: 10 #entender melhor
 parent_selection_type: "sss" #ok
-keep_parents: 1 #entender melhor
+keep_parents: -1 #ok
 num_parents_mating: 2 #entender melhor
 sol_per_pop: 3 #entender melhor
 
