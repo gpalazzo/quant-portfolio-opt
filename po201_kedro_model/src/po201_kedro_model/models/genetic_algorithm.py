@@ -53,7 +53,6 @@ def model_run(
         return mean_portfolio_ret, stdev_portfolio_ret
 
     def fitness_func(solution, solution_idx):
-
         print(f"Calculating fitness for solution {solution_idx}...")
         total_weight = sum(solution)
         solution = [solution_norm / total_weight for solution_norm in solution]
