@@ -40,11 +40,11 @@ def data_science_pipeline():
                     func=model_run,
                     inputs=[
                         "yf_tickers_mi",
-                        "params:expected_output",
                         "params:num_generations",
                         "params:init_range_low",
                         "params:init_range_high",
                         "params:crossover_type",
+                        "params:mutation_type",
                         "params:mutation_percent_genes",
                         "params:parent_selection_type",
                         "params:keep_parents",

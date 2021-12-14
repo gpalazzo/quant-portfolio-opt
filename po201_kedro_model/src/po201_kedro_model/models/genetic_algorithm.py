@@ -5,46 +5,74 @@ from datetime import datetime, timedelta
 from functools import reduce
 import time
 import pygad
+import os
+import multiprocessing
 
+
+os.environ["NUMEXPR_MAX_THREADS"] = f"{multiprocessing.cpu_count() - 1}"
 
 global ret_covar
+global ret_mean
+global ret_stdev
+RISK_FREE_RATE = 0.075
 
 
 def model_run(
     initial_df,
-    desired_output,
     num_generations,
     init_range_low,
     init_range_high,
     crossover_type,
+    mutation_type,
     mutation_percent_genes,
     parent_selection_type,
     keep_parents,
     num_parents_mating,
     sol_per_pop,
 ):
+    def _calc_var_portfolio_ret(weights):
+
+        part_1 = np.sum(np.multiply(weights, ret_stdev) ** 2)
+        temp_lst = []
+
+        for i in range(len(weights)):
+            for j in range(len(weights)):
+                temp = ret_covar.iloc[i][j] * weights[i] * weights[j]
+                temp_lst.append(temp)
+
+        part_2 = np.sum(temp_lst)
+
+        return part_1 + part_2
+
+    def _calculate_fit_stats(weights):
+
+        mean_portfolio_ret = np.sum(np.multiply(weights, ret_mean))
+        stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights))
+
+        return mean_portfolio_ret, stdev_portfolio_ret
+
     def fitness_func(solution, solution_idx):
 
-        target_risk = 0
+        print(f"Calculating fitness for solution {solution_idx}...")
+        total = sum(solution)
+        solution = [solution_norm / total for solution_norm in solution]
 
-        calculated_risk = np.dot(solution.T, np.dot(ret_covar, solution))
+        mean_return, stdev_return = _calculate_fit_stats(weights=solution)
+        fitness = (mean_return - RISK_FREE_RATE) / stdev_return
+        fitness = round(fitness, 5)
 
-        # return calculated_risk - target_risk
+        print(f"Fitness value: {fitness}")
 
-        return 1 / np.abs(calculated_risk - target_risk)
-
-    def mutation_func(offspring, ga_instance):
-        # This is random mutation that mutates a single gene.
-        for chromosome_idx in range(offspring.shape[0]):
-            # Make some random changes in 1 or more genes.
-            random_gene_idx = np.random.choice(range(offspring.shape[0]))
-
-            offspring[chromosome_idx, random_gene_idx] += np.random.random()
-
-        return offspring
+        return fitness
 
     global ret_covar
+    global ret_mean
+    global ret_stdev
+
+    ret_mean = initial_df.mean()
     ret_covar = initial_df.cov()
+    ret_stdev = initial_df.std()
+
     cols_len = list(range(len(initial_df.columns.tolist())))
     ret_covar.columns = cols_len
     ret_covar.index = cols_len
@@ -55,6 +83,7 @@ def model_run(
     num_genes = len(function_inputs[0])
 
     ga_instance = pygad.GA(
+        # initial_population=function_inputs, #VERIFICAR ESSE PARAMETRO
         num_generations=num_generations,
         num_parents_mating=num_parents_mating,
         fitness_func=fitness_function,
@@ -65,12 +94,14 @@ def model_run(
         parent_selection_type=parent_selection_type,
         keep_parents=keep_parents,
         crossover_type=crossover_type,
-        mutation_type=mutation_func,
+        mutation_type=mutation_type,
         mutation_percent_genes=mutation_percent_genes,
+        stop_criteria=f"saturate_{sol_per_pop}",
     )
 
     start_run_time = time.time()
 
+    print("Start running...")
     ga_instance.run()
 
     end_run_time = time.time()
@@ -82,9 +113,13 @@ def model_run(
     total = sum(solution)
     weights_norm = [_solution / total for _solution in solution]
 
-    breakpoint()
+    mean_portfolio_ret = np.sum(np.multiply(weights_norm, ret_mean))
+    stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights_norm))
 
-    calculated_risk = np.dot(pd.Series(weights_norm).T, np.dot(ret_covar, weights_norm))
+    print(f"Risco: {stdev_portfolio_ret}")
+    print(f"Retorno: {mean_portfolio_ret}")
+    print(f"Sharpe Ratio: {solution_fitness}")
+    print(f"Soma dos pesos: {sum(weights_norm)}")
 
     breakpoint()
 
