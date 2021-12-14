@@ -40,12 +40,9 @@ def data_science_pipeline():
                     func=model_run,
                     inputs=[
                         "yf_tickers_mi",
-                        "params:qty_stocks",
                         "params:population_size",
                         "params:risk_free_rate",
                         "params:qty_iterations",
-                        "params:max_expected_return",
-                        "params:min_expected_risk",
                     ],
                     outputs=["model_results", "model_runtime"],
                     name="process_ga_model",
