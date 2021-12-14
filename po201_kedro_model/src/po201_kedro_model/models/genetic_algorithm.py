@@ -4,6 +4,11 @@ import uuid
 from datetime import datetime, timedelta
 from functools import reduce
 import time
+import os
+import multiprocessing
+
+
+os.environ["NUMEXPR_MAX_THREADS"] = f"{multiprocessing.cpu_count() - 1}"
 
 
 class GeneticAlgorithm:
@@ -127,17 +132,12 @@ class GeneticAlgorithm:
         return new_population
 
 
-def model_run(
-    initial_df,
-    qty_genes,
-    population_size,
-    risk_free_rate,
-    qty_iterations,
-    max_expected_return,
-    min_expected_risk,
-):
+def model_run(initial_df, population_size, risk_free_rate, qty_iterations):
 
     start = time.time()
+
+    initial_df = initial_df.iloc[:, :30]
+    qty_genes = len(initial_df.columns)
 
     print("Instanciando o modelo...")
     ga_model = GeneticAlgorithm(
@@ -158,12 +158,7 @@ def model_run(
     _expected_risk = 1
 
     print("Iniciando loop...")
-    while (
-        _expected_returns < max_expected_return and _expected_risk > min_expected_risk
-    ):
-
-        if _iteration > qty_iterations:
-            break
+    while _iteration <= qty_iterations:
 
         print("Iteration:", _iteration)
 
