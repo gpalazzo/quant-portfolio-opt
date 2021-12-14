@@ -50,6 +50,7 @@ def data_science_pipeline():
                         "params:keep_parents",
                         "params:num_parents_mating",
                         "params:sol_per_pop",
+                        "params:min_expected_risk",
                     ],
                     outputs=["model_results", "model_runtime"],
                     name="process_ga_model",

@@ -8,3 +8,5 @@ parent_selection_type: "sss" #ok
 keep_parents: 1 #entender melhor
 num_parents_mating: 2 #entender melhor
 sol_per_pop: 3 #entender melhor
+
+min_expected_risk: 0.00001

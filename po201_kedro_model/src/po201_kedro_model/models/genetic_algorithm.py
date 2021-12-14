@@ -14,7 +14,6 @@ os.environ["NUMEXPR_MAX_THREADS"] = f"{multiprocessing.cpu_count() - 1}"
 global ret_covar
 global ret_mean
 global ret_stdev
-RISK_FREE_RATE = 0.075
 
 
 def model_run(
@@ -29,6 +28,7 @@ def model_run(
     keep_parents,
     num_parents_mating,
     sol_per_pop,
+    min_expected_risk,
 ):
     def _calc_var_portfolio_ret(weights):
 
@@ -54,12 +54,16 @@ def model_run(
     def fitness_func(solution, solution_idx):
 
         print(f"Calculating fitness for solution {solution_idx}...")
-        total = sum(solution)
-        solution = [solution_norm / total for solution_norm in solution]
+        total_weight = sum(solution)
+        weights_norm = pd.Series(
+            [solution_norm / total_weight for solution_norm in solution]
+        )
 
-        mean_return, stdev_return = _calculate_fit_stats(weights=solution)
-        fitness = (mean_return - RISK_FREE_RATE) / stdev_return
-        fitness = round(fitness, 5)
+        _risk = np.dot(weights_norm, np.dot(ret_covar, weights_norm))
+
+        fitness = (1 / (_risk - min_expected_risk)) * -1
+
+        # breakpoint()
 
         print(f"Fitness value: {fitness}")
 
@@ -73,14 +77,12 @@ def model_run(
     ret_covar = initial_df.cov()
     ret_stdev = initial_df.std()
 
-    cols_len = list(range(len(initial_df.columns.tolist())))
-    ret_covar.columns = cols_len
-    ret_covar.index = cols_len
-
-    function_inputs = initial_df.to_numpy()
+    # cols_len = list(range(len(initial_df.columns.tolist())))
+    # ret_covar.columns = cols_len
+    # ret_covar.index = cols_len
 
     fitness_function = fitness_func
-    num_genes = len(function_inputs[0])
+    num_genes = len(initial_df.to_numpy()[0])
 
     ga_instance = pygad.GA(
         # initial_population=function_inputs, #VERIFICAR ESSE PARAMETRO
@@ -113,12 +115,29 @@ def model_run(
     total = sum(solution)
     weights_norm = [_solution / total for _solution in solution]
 
-    mean_portfolio_ret = np.sum(np.multiply(weights_norm, ret_mean))
-    stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights_norm))
+    mean_portfolio_ret = np.sum(weights_norm * ret_mean)
+    stdev_portfolio_ret = np.dot(weights_norm, np.dot(ret_covar, weights_norm))
+
+    # TESTES
+
+    cols = initial_df.columns.tolist()
+    w = {"stock": cols, "peso": weights_norm}
+    wdf = pd.DataFrame.from_dict(w)
+    rdf = (
+        pd.DataFrame(ret_mean, columns=["retorno"])
+        .reset_index()
+        .rename(columns={"index": "stock"})
+    )
+    df = pd.merge(left=wdf, right=rdf, on=["stock"])
+
+    breakpoint()
+
+    # TESTES
+
+    breakpoint()
 
     print(f"Risco: {stdev_portfolio_ret}")
     print(f"Retorno: {mean_portfolio_ret}")
-    print(f"Sharpe Ratio: {solution_fitness}")
     print(f"Soma dos pesos: {sum(weights_norm)}")
 
     breakpoint()
