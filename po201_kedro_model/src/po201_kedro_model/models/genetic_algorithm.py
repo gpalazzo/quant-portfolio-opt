@@ -7,6 +7,9 @@ import time
 import pygad
 
 
+global ret_covar
+
+
 def model_run(
     initial_df,
     desired_output,
@@ -21,9 +24,14 @@ def model_run(
     sol_per_pop,
 ):
     def fitness_func(solution, solution_idx):
-        output = np.sum(solution * function_inputs)
-        fitness = 1.0 / np.abs(output - desired_output)
-        return fitness
+
+        target_risk = 0
+
+        calculated_risk = np.dot(solution.T, np.dot(ret_covar, solution))
+
+        # return calculated_risk - target_risk
+
+        return 1 / np.abs(calculated_risk - target_risk)
 
     def mutation_func(offspring, ga_instance):
         # This is random mutation that mutates a single gene.
@@ -35,9 +43,16 @@ def model_run(
 
         return offspring
 
-    function_inputs = initial_df.to_numpy()  # ok
-    fitness_function = fitness_func  # mudar função
-    num_genes = len(function_inputs[0])  # ok
+    global ret_covar
+    ret_covar = initial_df.cov()
+    cols_len = list(range(len(initial_df.columns.tolist())))
+    ret_covar.columns = cols_len
+    ret_covar.index = cols_len
+
+    function_inputs = initial_df.to_numpy()
+
+    fitness_function = fitness_func
+    num_genes = len(function_inputs[0])
 
     ga_instance = pygad.GA(
         num_generations=num_generations,
@@ -63,21 +78,13 @@ def model_run(
     print(f"Time to run in seconds: {end_run_time - start_run_time}")
 
     solution, solution_fitness, solution_idx = ga_instance.best_solution()
-    # print("Parameters of the best solution : {solution}".format(solution=solution))
-    print("Soma dos pesos : {solution}".format(solution=sum(solution)))
-    print("Length of the best solution : {solution}".format(solution=len(solution)))
-    print(
-        "Fitness value of the best solution = {solution_fitness}".format(
-            solution_fitness=solution_fitness
-        )
-    )
 
-    prediction = np.sum(np.array(function_inputs) * solution)
-    print(
-        "Predicted output based on the best solution : {prediction}".format(
-            prediction=prediction
-        )
-    )
+    total = sum(solution)
+    weights_norm = [_solution / total for _solution in solution]
+
+    breakpoint()
+
+    calculated_risk = np.dot(pd.Series(weights_norm).T, np.dot(ret_covar, weights_norm))
 
     breakpoint()
 
