@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +15,9 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="TaskManager">
     <servers />
