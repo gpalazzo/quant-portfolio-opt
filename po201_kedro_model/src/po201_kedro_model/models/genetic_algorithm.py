@@ -68,6 +68,9 @@ def model_run(
     global ret_covar
     global ret_mean
     global ret_stdev
+    global counter
+
+    counter = 0
 
     ret_mean = initial_df.mean()
     ret_covar = initial_df.cov()
