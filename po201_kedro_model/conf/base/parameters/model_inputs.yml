@@ -1,12 +1,8 @@
-num_generations: 50 #entender melhor
-init_range_low: 0 #ok
-init_range_high: 1 #ok
-crossover_type: "single_point" #ok
-mutation_type: "swap" #ok
-mutation_percent_genes: 10 #entender melhor
-parent_selection_type: "sss" #ok
-keep_parents: -1 #ok
-num_parents_mating: 2 #entender melhor
-sol_per_pop: 3 #entender melhor
-
-min_expected_risk: 0.00001
+num_generations: 50
+crossover_type: "single_point"
+mutation_type: "swap"
+mutation_percent_genes: 10
+parent_selection_type: "sss"
+keep_parents: -1
+num_parents_mating: 2
+sol_per_pop: 1

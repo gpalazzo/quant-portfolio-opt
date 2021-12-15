@@ -14,15 +14,12 @@ os.environ["NUMEXPR_MAX_THREADS"] = f"{multiprocessing.cpu_count() - 1}"
 global ret_covar
 global ret_mean
 global ret_stdev
-
-RF_RATE = 0.075
+global counter
 
 
 def model_run(
     initial_df,
     num_generations,
-    init_range_low,
-    init_range_high,
     crossover_type,
     mutation_type,
     mutation_percent_genes,
@@ -45,25 +42,28 @@ def model_run(
 
         return part_1 + part_2
 
-    def _calculate_fit_stats(weights):
-
-        mean_portfolio_ret = np.sum(weights * ret_mean)
-        stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights))
-
-        return mean_portfolio_ret, stdev_portfolio_ret
-
     def fitness_func(solution, solution_idx):
         print(f"Calculating fitness for solution {solution_idx}...")
         total_weight = sum(solution)
         solution = [solution_norm / total_weight for solution_norm in solution]
 
-        mean_portfolio_ret, stdev_portfolio_ret = _calculate_fit_stats(weights=solution)
+        stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=solution))
 
-        fitness = 1 / ((mean_portfolio_ret - RF_RATE) / stdev_portfolio_ret)
+        fitness = 1 / stdev_portfolio_ret
 
         print(f"Fitness value: {fitness}")
 
         return fitness
+
+    def on_generation(ga_instance):
+
+        global counter
+        counter += 1
+
+        if counter == 10:
+            return "stop"
+        else:
+            pass
 
     global ret_covar
     global ret_mean
@@ -73,28 +73,25 @@ def model_run(
     ret_covar = initial_df.cov()
     ret_stdev = initial_df.std()
 
-    # cols_len = list(range(len(initial_df.columns.tolist())))
-    # ret_covar.columns = cols_len
-    # ret_covar.index = cols_len
-
     fitness_function = fitness_func
-    num_genes = len(initial_df.to_numpy()[0])
+
+    inputs = initial_df.to_numpy()
+    num_genes = len(inputs[0])
 
     ga_instance = pygad.GA(
-        # initial_population=function_inputs, #VERIFICAR ESSE PARAMETRO
+        initial_population=inputs,
         num_generations=num_generations,
         num_parents_mating=num_parents_mating,
         fitness_func=fitness_function,
         sol_per_pop=sol_per_pop,
         num_genes=num_genes,
-        init_range_low=init_range_low,
-        init_range_high=init_range_high,
         parent_selection_type=parent_selection_type,
         keep_parents=keep_parents,
         crossover_type=crossover_type,
         mutation_type=mutation_type,
         mutation_percent_genes=mutation_percent_genes,
-        stop_criteria=f"saturate_{sol_per_pop}",
+        # stop_criteria="saturate_5",
+        on_generation=on_generation,
     )
 
     start_run_time = time.time()
@@ -113,24 +110,8 @@ def model_run(
 
     breakpoint()
 
-    mean_portfolio_ret = np.sum(weights_norm * ret_mean)
-    stdev_portfolio_ret = np.dot(weights_norm, np.dot(ret_covar, weights_norm))
-
-    # TESTES
-
-    cols = initial_df.columns.tolist()
-    w = {"stock": cols, "peso": weights_norm}
-    wdf = pd.DataFrame.from_dict(w)
-    rdf = (
-        pd.DataFrame(ret_mean, columns=["retorno"])
-        .reset_index()
-        .rename(columns={"index": "stock"})
-    )
-    df = pd.merge(left=wdf, right=rdf, on=["stock"])
-
-    breakpoint()
-
-    # TESTES
+    mean_portfolio_ret = np.sum(np.multiply(weights_norm * ret_mean))
+    stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights_norm))
 
     breakpoint()
 

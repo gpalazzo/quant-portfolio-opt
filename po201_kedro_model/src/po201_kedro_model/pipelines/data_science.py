@@ -41,8 +41,6 @@ def data_science_pipeline():
                     inputs=[
                         "yf_tickers_mi",
                         "params:num_generations",
-                        "params:init_range_low",
-                        "params:init_range_high",
                         "params:crossover_type",
                         "params:mutation_type",
                         "params:mutation_percent_genes",
