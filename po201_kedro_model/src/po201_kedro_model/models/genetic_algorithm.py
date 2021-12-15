@@ -60,7 +60,7 @@ def model_run(
         global counter
         counter += 1
 
-        if counter == 10:
+        if counter == num_generations:
             return "stop"
         else:
             pass
@@ -90,8 +90,8 @@ def model_run(
         crossover_type=crossover_type,
         mutation_type=mutation_type,
         mutation_percent_genes=mutation_percent_genes,
-        # stop_criteria="saturate_5",
         on_generation=on_generation,
+        # stop_criteria="saturate_5",
     )
 
     start_run_time = time.time()
@@ -108,18 +108,15 @@ def model_run(
     total = sum(solution)
     weights_norm = [_solution / total for _solution in solution]
 
-    breakpoint()
-
     mean_portfolio_ret = np.sum(np.multiply(weights_norm * ret_mean))
     stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights_norm))
-
-    breakpoint()
 
     print(f"Risco: {stdev_portfolio_ret}")
     print(f"Retorno: {mean_portfolio_ret}")
     print(f"Soma dos pesos: {sum(weights_norm)}")
 
     breakpoint()
+    # build_report() #finalizar essa função
 
 
 def build_report(

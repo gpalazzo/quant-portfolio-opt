@@ -1,9 +1,9 @@
 # quantity of months to generate rolling windows
 days_roll_window:
   - 1
-  - 5
-  - 10
-  - 15
+  - 2
+  - 3
+  - 4
 
 # amount of days to consider data looking back
 # rational: get model running date and subtract the number here
