@@ -4,188 +4,122 @@ import uuid
 from datetime import datetime, timedelta
 from functools import reduce
 import time
+import pygad
 import os
 import multiprocessing
 
 
 os.environ["NUMEXPR_MAX_THREADS"] = f"{multiprocessing.cpu_count() - 1}"
 
+global ret_covar
+global ret_mean
+global ret_stdev
+global counter
 
-class GeneticAlgorithm:
-    def __init__(self, initial_df, qty_genes, population_size, risk_free_rate):
-        self.initial_df = initial_df
-        self.qty_genes = qty_genes
-        self.population_size = population_size
-        self.risk_free_rate = risk_free_rate
-        self.cov_hist_return = None
-        self.mean_hist_return = None
-        self.sd_hist_return = None
-        self.calculate_statistics()
 
-    def create_chromosome(self):
-        ch = np.random.rand(self.qty_genes)
-        return ch / sum(ch)
+def model_run(
+    initial_df,
+    num_generations,
+    crossover_type,
+    mutation_type,
+    mutation_percent_genes,
+    parent_selection_type,
+    keep_parents,
+    num_parents_mating,
+    sol_per_pop,
+):
+    def _calc_var_portfolio_ret(weights):
 
-    def build_init_population(self):
-        return np.array([self.create_chromosome() for _ in range(self.population_size)])
-
-    def apply_fitness_func(self, child):
-        return (self.mean_portfolio_return(child) - self.risk_free_rate) / np.sqrt(
-            self.var_portfolio_return(child)
-        )
-
-    def var_portfolio_return(self, child):
-        part_1 = np.sum(np.multiply(child, self.sd_hist_return) ** 2)
+        part_1 = np.sum(np.multiply(weights, ret_stdev) ** 2)
         temp_lst = []
 
-        for i in range(self.qty_genes):
-            for j in range(self.qty_genes):
-                temp = self.cov_hist_return.iloc[i][j] * child[i] * child[j]
+        for i in range(len(weights)):
+            for j in range(len(weights)):
+                temp = ret_covar.iloc[i][j] * weights[i] * weights[j]
                 temp_lst.append(temp)
 
         part_2 = np.sum(temp_lst)
 
         return part_1 + part_2
 
-    def mean_portfolio_return(self, child):
-        return np.sum(np.multiply(child, self.mean_hist_return))
+    def fitness_func(solution, solution_idx):
+        print(f"Calculating fitness for solution {solution_idx}...")
+        total_weight = sum(solution)
+        solution = [solution_norm / total_weight for solution_norm in solution]
 
-    def calculate_statistics(self):
-        cols = self.initial_df.columns
-        self.initial_df[cols] = self.initial_df[cols].apply(
-            pd.to_numeric, errors="coerce"
-        )
+        stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=solution))
 
-        # covariance
-        self.cov_hist_return = self.initial_df.cov()
-        # mean
-        self.mean_hist_return = self.initial_df.mean()
-        # standard deviation
-        self.sd_hist_return = self.initial_df.std()
+        fitness = 1 / stdev_portfolio_ret
 
-    def select_elite_population(self, population, frac=0.3):
-        """Select elite population from the total population based on fitness function values.
-        Input: Population and fraction of population to be considered as elite.
-        Output: Elite population."""
-        population = sorted(
-            population, key=lambda x: self.apply_fitness_func(x), reverse=True
-        )
-        percentage_elite_idx = int(np.floor(len(population) * frac))
-        return population[:percentage_elite_idx]
+        print(f"Fitness value: {fitness}")
 
-    def apply_mutation(self, parent):
-        """Randomy choosen elements of a chromosome are swapped
-        Input: Parent
-        Output: Offspring (1D Array)"""
-        child = parent.copy()
-        n = np.random.choice(range(self.qty_genes), 2)
-        while n[0] == n[1]:
-            n = np.random.choice(range(self.qty_genes), 2)
-        child[n[0]], child[n[1]] = child[n[1]], child[n[0]]
-        return child
+        return fitness
 
-    def apply_arithmetic_crossover(self, parent1, parent2):
-        """The oﬀsprings are created according to the equation:
-            Off spring A = α ∗ Parent1 + (1 −α) ∗ Parent2
-            Off spring B = (1 −α) ∗ Parent1 + α ∗ Parent2
+    def on_generation(ga_instance):
 
-                Where α is a random number between 0 and 1.
-        Input: 2 Parents
-        Output: 2 Children (1d Array)"""
-        alpha = np.random.rand()
-        child1 = alpha * parent1 + (1 - alpha) * parent2
-        child2 = (1 - alpha) * parent1 + alpha * parent2
-        return child1, child2
+        global counter
+        counter += 1
 
-    def build_next_generation(self, elite, crossover):
-        """Generates new population from elite population with mutation probability as 0.4 and crossover as 0.6.
-        Over the final stages, mutation probability is decreased to 0.1.
-        Input: Population Size and elite population.
-        Output: Next generation population (2D Array)."""
-        new_population = []
-        elite_range = range(len(elite))
-        #     print(elite_range)
-        while len(new_population) < self.population_size:
-            if (
-                len(new_population) > 2 * self.population_size / 3
-            ):  # In the final stages mutation frequency is decreased.
-                mutate_or_crossover = np.random.choice([0, 1], p=[0.9, 0.1])
-            else:
-                mutate_or_crossover = np.random.choice([0, 1], p=[0.4, 0.6])
-            #         print(mutate_or_crossover)
-            if mutate_or_crossover:
-                indx = np.random.choice(elite_range)
-                new_population.append(self.apply_mutation(elite[indx]))
-            else:
-                p1_idx, p2_idx = np.random.choice(elite_range, 2)
-                c1, c2 = crossover(elite[p1_idx], elite[p2_idx])
-                chk = 0
-                for gene in range(self.qty_genes):
-                    if c1[gene] < 0:
-                        chk += 1
-                    else:
-                        chk += 0
-                if sum([chk]) > 0:
-                    p1_idx, p2_idx = np.random.choice(elite_range, 2)
-                    c1, c2 = crossover(elite[p1_idx], elite[p2_idx])
-                new_population.extend([c1, c2])
-        return new_population
+        if counter == 10:
+            return "stop"
+        else:
+            pass
 
+    global ret_covar
+    global ret_mean
+    global ret_stdev
 
-def model_run(initial_df, population_size, risk_free_rate, qty_iterations):
+    ret_mean = initial_df.mean()
+    ret_covar = initial_df.cov()
+    ret_stdev = initial_df.std()
 
-    start = time.time()
+    fitness_function = fitness_func
 
-    initial_df = initial_df.iloc[:, :50]
-    qty_genes = len(initial_df.columns)
+    inputs = initial_df.to_numpy()
+    num_genes = len(inputs[0])
 
-    print("Instanciando o modelo...")
-    ga_model = GeneticAlgorithm(
-        initial_df=initial_df,
-        qty_genes=qty_genes,
-        population_size=population_size,
-        risk_free_rate=risk_free_rate,
+    ga_instance = pygad.GA(
+        initial_population=inputs,
+        num_generations=num_generations,
+        num_parents_mating=num_parents_mating,
+        fitness_func=fitness_function,
+        sol_per_pop=sol_per_pop,
+        num_genes=num_genes,
+        parent_selection_type=parent_selection_type,
+        keep_parents=keep_parents,
+        crossover_type=crossover_type,
+        mutation_type=mutation_type,
+        mutation_percent_genes=mutation_percent_genes,
+        # stop_criteria="saturate_5",
+        on_generation=on_generation,
     )
 
-    print("Criando população inicial...")
-    initial_pop = ga_model.build_init_population()
+    start_run_time = time.time()
 
-    print("Selecionando população elite inicial...")
-    _elite = ga_model.select_elite_population(population=initial_pop)
+    print("Start running...")
+    ga_instance.run()
 
-    _iteration = 0
-    _expected_returns = 0
-    _expected_risk = 1
+    end_run_time = time.time()
 
-    print("Iniciando loop...")
-    while _iteration <= qty_iterations:
+    print(f"Time to run in seconds: {end_run_time - start_run_time}")
 
-        print("Iteration:", _iteration)
+    solution, solution_fitness, solution_idx = ga_instance.best_solution()
 
-        print("Cria próxima geração...")
-        _population = ga_model.build_next_generation(
-            _elite, ga_model.apply_arithmetic_crossover
-        )
-        print("Selecionando população elite...")
-        _elite = ga_model.select_elite_population(population=_population)
-        _expected_returns = ga_model.mean_portfolio_return(_elite[0])
-        _expected_risk = ga_model.var_portfolio_return(_elite[0])
+    total = sum(solution)
+    weights_norm = [_solution / total for _solution in solution]
 
-        print(
-            f"Expected returns of {_expected_returns} with risk of {_expected_risk}\n"
-        )
+    breakpoint()
 
-        _iteration += 1
+    mean_portfolio_ret = np.sum(np.multiply(weights_norm * ret_mean))
+    stdev_portfolio_ret = np.sqrt(_calc_var_portfolio_ret(weights=weights_norm))
 
-    return build_report(
-        _initial_df=initial_df,
-        qty_genes=qty_genes,
-        _elite=_elite,
-        _expected_returns=_expected_returns,
-        _expected_risk=_expected_risk,
-        _rf_rate=risk_free_rate,
-        start_time=start,
-    )
+    breakpoint()
+
+    print(f"Risco: {stdev_portfolio_ret}")
+    print(f"Retorno: {mean_portfolio_ret}")
+    print(f"Soma dos pesos: {sum(weights_norm)}")
+
+    breakpoint()
 
 
 def build_report(

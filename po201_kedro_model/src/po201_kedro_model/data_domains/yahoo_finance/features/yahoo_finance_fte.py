@@ -6,7 +6,7 @@ from datetime import timedelta, datetime
 
 def yahoo_finance_features(
     df: pd.DataFrame,
-    month_roll_window: List[int],
+    days_roll_window: List[int],
     days_lookback: int,
     null_pct_cut: float,
 ) -> pd.DataFrame:
@@ -16,7 +16,7 @@ def yahoo_finance_features(
     )
 
     df_ftes = _yf_calculate_rolling_windows(
-        df=df_pre_processed, month_roll_window=month_roll_window
+        df=df_pre_processed, days_roll_window=days_roll_window
     )
 
     return df_ftes
@@ -66,7 +66,7 @@ def _yf_fte_pre_processing(
 
 
 def _yf_calculate_rolling_windows(
-    df: pd.DataFrame, month_roll_window: List[int]
+    df: pd.DataFrame, days_roll_window: List[int]
 ) -> pd.DataFrame:
 
     idx = []
@@ -78,10 +78,14 @@ def _yf_calculate_rolling_windows(
     _min_date = df["date"].min().date()
     diff_days_weekdays = np.busday_count(_min_date, _max_date)
 
-    windows = month_roll_window + list(range(5, diff_days_weekdays, 5))
+    windows = days_roll_window + list(range(30, diff_days_weekdays, 30))
+
+    breakpoint()
 
     threshold = df.index.max()
     windows = [window for window in windows if window <= threshold]
+
+    breakpoint()
 
     df.index = df.index + 1
 
