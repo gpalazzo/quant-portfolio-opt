@@ -21,9 +21,6 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh && rm -rf ./Miniconda3-latest-Linux-x86_64.sh
 echo 'export PATH="/home/ubuntu/miniconda3/bin:$PATH"' >> ~/.bashrc
 
-# postgres database
-sudo apt install postgresql postgresql-contrib
-
 # docker
 sudo apt install apt-transport-https ca-certificates curl software-properties-common #install pre-requisites
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - #GPG key
