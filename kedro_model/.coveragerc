@@ -1,0 +1,13 @@
+[report]
+fail_under=0
+show_missing=True
+omit =
+    **/**/__init__.py
+    src/kedro_model/cli.py
+    src/kedro_model/hooks.py
+    src/kedro_model/pipelines/*.py
+    src/kedro_model/run.py
+    src/kedro_model/settings.py
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError

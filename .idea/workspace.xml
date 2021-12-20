@@ -3,12 +3,43 @@
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_setup/installations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/po201_setup/installations.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/dags/yahoo_finance_dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/dags/yahoo_finance_dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/.coveragerc" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/.coveragerc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/features/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/hooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/hooks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/io/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/custom_sql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/io/custom_sql_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/models/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/pipelines/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/pipelines/data_science.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,6 +54,15 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
