@@ -3,99 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/poetry.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/pyproject.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/build_final_values.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/final_project.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/markowitz.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/input_output.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_ampl_model/src/utils/parser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/conf/yahoo_finance/io.yml" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/conf/yahoo_finance/io.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/notebooks/.ipynb_checkpoints/printing_plots-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/notebooks/.ipynb_checkpoints/printing_plots-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/notebooks/printing_plots.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/notebooks/printing_plots.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/airflow.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/airflow.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/dags/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/dags/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/dags/yahoo_finance_dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/dags/yahoo_finance_dag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/intermediate/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/primary/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/primary/yahoo_finance_prm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/commons.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/utils/commons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/utils/input_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/utils/input_output.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_etl/src/webserver_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/webserver_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/.coveragerc" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/.coveragerc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/.ipython/profile_default/startup/00-kedro-init.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/.ipython/profile_default/startup/00-kedro-init.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/catalog/model_inputs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/model_outputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/catalog/model_outputs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/catalog/yahoo_finance/features.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/catalog/yahoo_finance/features.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/credentials.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/credentials.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/globals.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/globals.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/logging.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/logging.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/model_inputs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/parameters/model_inputs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/base/parameters/yahoo_finance.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/base/parameters/yahoo_finance.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/conf/local/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/conf/local/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/03_primary/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/03_primary/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/04_feature/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/04_feature/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/05_model_input/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/05_model_input/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/06_models/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/06_models/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/07_model_output/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/07_model_output/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/data/08_reporting/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/data/08_reporting/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/docs/source/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/docs/source/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/logs/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/logs/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/logs/journals/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/logs/journals/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/notebooks/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/notebooks/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/setup.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/hooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/hooks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/io/custom_sql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/custom_sql_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/data_science.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/po201_kedro_model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/tests/pipelines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/tests/pipelines/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_kedro_model/src/tests/test_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/tests/test_run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_setup/git_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aux_setup/git_setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_setup/installations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aux_setup/installations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_setup/postgres_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/aux_setup/postgres_setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_storage_sql/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage_pgsql/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/po201_storage_sql/pg-init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/storage_pgsql/pg-init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/dags/yahoo_finance_dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/dags/yahoo_finance_dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/.coveragerc" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/.coveragerc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/features/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/data_domains/yahoo_finance/features/yahoo_finance_fte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/hooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/hooks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/io/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/io/custom_sql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/io/custom_sql_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/models/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/models/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/pipelines/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/pipelines/data_science.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/pipelines/data_science.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro_model/src/po201_kedro_model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro_model/src/kedro_model/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

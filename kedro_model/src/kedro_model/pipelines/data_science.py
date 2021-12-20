@@ -1,9 +1,9 @@
 from kedro.pipeline import Pipeline, node, pipeline
-from po201_kedro_model.data_domains.yahoo_finance import (
+from kedro_model.data_domains.yahoo_finance import (
     yahoo_finance_features,
     yf_select_mktcap_tickers,
 )
-from po201_kedro_model.models import model_run
+from kedro_model.models import model_run
 
 
 def data_science_pipeline():

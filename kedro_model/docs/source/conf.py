@@ -50,7 +50,7 @@ import re
 from kedro.framework.cli.utils import find_stylesheets
 from recommonmark.transform import AutoStructify
 
-from po201_kedro_model import __version__ as release
+from kedro_model import __version__ as release
 
 # -- Project information -----------------------------------------------------
 

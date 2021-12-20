@@ -17,7 +17,7 @@ with DAG(
     dag_id="yf_stock_prices",
     description="All stock prices for yahoo_finance",
     start_date=datetime.now() - timedelta(days=2),
-    schedule_interval="*/15 * * * *",
+    schedule_interval="*/45 * * * *",
     catchup=False,
 ) as yf_stock_prices_dag:
 
@@ -63,7 +63,7 @@ with DAG(
     dag_id="yf_mktcap",
     description="All stock market cap for yahoo_finance",
     start_date=datetime.now() - timedelta(days=2),
-    schedule_interval="*/15 * * * *",
+    schedule_interval="*/45 * * * *",
     catchup=False,
 ) as yf_stock_mktcap_dag:
 

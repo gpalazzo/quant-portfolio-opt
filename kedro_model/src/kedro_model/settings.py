@@ -27,7 +27,7 @@
 # limitations under the License.
 
 """Project settings."""
-from po201_kedro_model.hooks import ProjectHooks
+from kedro_model.hooks import ProjectHooks
 
 # Instantiate and list your project hooks here
 HOOKS = (ProjectHooks(),)

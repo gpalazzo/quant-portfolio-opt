@@ -30,6 +30,8 @@ def run_stock_names_raw():
         {"stocks_name": priority_stocks.keys(), "priority": priority_stocks.values()}
     )
 
+    df = df.iloc[:100, :]
+
     dump_data_pgsql(
         df=df,
         database=config["yf_stock_names_db_name"],
