@@ -1,14 +1,14 @@
 yf_ticker_names_priorities:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from aux.public.stock_names"
 
 yf_tickers_fte:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from prm.public.all_stocks_prices_prm"
 
 yf_tickers_mktcap_fte:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from prm.public.all_stocks_mktcap_prm"

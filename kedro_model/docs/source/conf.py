@@ -29,7 +29,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# po201_kedro_model documentation build
+# kedro_model documentation build
 # configuration file, created by sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -54,7 +54,7 @@ from po201_kedro_model import __version__ as release
 
 # -- Project information -----------------------------------------------------
 
-project = "po201_kedro_model"
+project = "kedro_model"
 copyright = "2020, QuantumBlack Visual Analytics Limited"
 author = "QuantumBlack"
 
@@ -177,8 +177,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "po201_kedro_model.tex",
-        "po201_kedro_model Documentation",
+        "kedro_model.tex",
+        "kedro_model Documentation",
         "QuantumBlack",
         "manual",
     )
@@ -191,8 +191,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "po201_kedro_model",
-        "po201_kedro_model Documentation",
+        "kedro_model",
+        "kedro_model Documentation",
         [author],
         1,
     )
@@ -206,11 +206,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "po201_kedro_model",
-        "po201_kedro_model Documentation",
+        "kedro_model",
+        "kedro_model Documentation",
         author,
-        "po201_kedro_model",
-        "Project po201_kedro_model codebase.",
+        "kedro_model",
+        "Project kedro_model codebase.",
         "Data-Science",
     )
 ]

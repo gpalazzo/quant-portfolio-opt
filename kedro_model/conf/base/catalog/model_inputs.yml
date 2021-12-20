@@ -1,9 +1,9 @@
 yf_tickers_mi:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from mi.public.master_table"
 
 yf_tickers_mktcap_mi:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from mi.public.stocks_mktcap"

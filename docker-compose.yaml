@@ -3,15 +3,15 @@ version: '3'
 x-airflow-common:
   &airflow-common
   build:
-    context: ./po201_etl
+    context: ./airflow_etl
     dockerfile: Dockerfile
   env_file:
-    - ./po201_etl/airflow_base.env
+    - ./airflow_etl/airflow_base.env
   volumes:
-    - ./po201_etl/conf:/opt/airflow/conf
-    - ./po201_etl/data:/opt/airflow/data
-    - ./po201_etl/plugins:/opt/airflow/plugins
-    - ./po201_etl/src:/opt/airflow/src
+    - ./airflow_etl/conf:/opt/airflow/conf
+    - ./airflow_etl/data:/opt/airflow/data
+    - ./airflow_etl/plugins:/opt/airflow/plugins
+    - ./airflow_etl/src:/opt/airflow/src
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     airflow-redis:
@@ -19,12 +19,12 @@ x-airflow-common:
     airflow-postgres:
       condition: service_healthy
   networks:
-    - po201_network
+    - portf_opt_network
 
 services:
   airflow-postgres:
     image: postgres:13
-    container_name: po201_airflow_postgres
+    container_name: airflow_postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -37,11 +37,11 @@ services:
       retries: 5
     restart: always
     networks:
-      - po201_network
+      - portf_opt_network
 
   airflow-redis:
     image: redis:latest
-    container_name: po201_airflow_redis
+    container_name: airflow_redis
     ports:
       - "6379:6379"
     healthcheck:
@@ -51,11 +51,11 @@ services:
       retries: 50
     restart: always
     networks:
-      - po201_network
+      - portf_opt_network
 
   airflow-webserver:
     <<: *airflow-common
-    container_name: po201_airflow_webserver
+    container_name: airflow_webserver
     command: webserver
     ports:
       - "8080:8080"
@@ -68,7 +68,7 @@ services:
 
   airflow-scheduler:
     <<: *airflow-common
-    container_name: po201_airflow_scheduler
+    container_name: airflow_scheduler
     command: scheduler
     healthcheck:
       test: ["CMD-SHELL", 'airflow jobs check --job-type SchedulerJob --hostname "$${HOSTNAME}"']
@@ -79,7 +79,7 @@ services:
 
   airflow-worker:
     <<: *airflow-common
-    container_name: po201_airflow_worker
+    container_name: airflow_worker
     command: celery worker
     healthcheck:
       test:
@@ -94,61 +94,46 @@ services:
     <<: *airflow-common
     command: version
     env_file:
-      - ./po201_etl/airflow_base.env
-      - ./po201_etl/airflow_init.env
+      - airflow_etl/airflow_base.env
+      - airflow_etl/airflow_init.env
 
   storage-pgsql:
     image: postgres:13
-    container_name: po201_storage_postgres
+    container_name: storage_postgres
     env_file:
-      - ./po201_storage_sql/pgsql.env
+      - storage_pgsql/pgsql.env
     ports:
       - "5433:5432"
     volumes:
       - storage-pgsql-volume:/var/lib/postgresql/data
-      - ./po201_storage_sql/pg-init.sql:/docker-entrypoint-initdb.d/pg-init.sql
+      - ./storage_pgsql/pg-init.sql:/docker-entrypoint-initdb.d/pg-init.sql
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "gpalazzo" ]
       interval: 5s
       retries: 5
     restart: always
     networks:
-      - po201_network
+      - portf_opt_network
 
   kedro-model:
     build:
-      context: ./po201_kedro_model
+      context: kedro_model
       dockerfile: Dockerfile
-    container_name: po201_kedro_model
+    container_name: kedro_model
     env_file:
-      - ./po201_kedro_model/kedro_base.env
+      - kedro_model/kedro_base.env
     ports:
       - "8888:8888"
     volumes:
-      - ./po201_kedro_model:/home/kedro
+      - ./kedro_model:/home/kedro
     restart: always
     networks:
-      - po201_network
-
-  ampl-model:
-    build:
-      context: ./po201_ampl_model
-      dockerfile: Dockerfile
-    container_name: po201_ampl_model
-    env_file:
-      - ./po201_ampl_model/ampl_base.env
-    ports:
-      - "8889:8888"
-    volumes:
-      - ./po201_ampl_model:/home/ampl
-    restart: always
-    networks:
-      - po201_network
+      - portf_opt_network
 
 volumes:
   airflow-pgsql-volume:
   storage-pgsql-volume:
 
 networks:
-  po201_network:
+  portf_opt_network:
     driver: bridge

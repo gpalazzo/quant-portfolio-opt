@@ -25,7 +25,7 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""po201_kedro_model
+"""kedro_model
 """
 
 __version__ = "0.1"

@@ -1,9 +1,9 @@
 model_results:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from aux.public.ga_report"
 
 model_runtime:
-  type: po201_kedro_model.io.CustomSQLQueryDataSet
+  type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
   sql: "select * from aux.public.ga_run_time"
