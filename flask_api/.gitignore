@@ -1,0 +1,19 @@
+# exclude unused files
+**/**/.idea
+**/**/__pycache__
+
+# exclude log files
+**/**/*.log
+**/**/logs/
+
+# exclude data files
+**/data/**
+
+# exclude env files
+**/**.env
+
+# exclude pid airflow files
+**/**.pid
+
+# exclude credentials
+**/credentials.json
