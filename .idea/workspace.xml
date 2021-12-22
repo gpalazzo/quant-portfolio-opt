@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flask_api/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/flask_base.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/src/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_api/src/resources/health.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/poetry.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airflow_etl/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airflow_etl/src/airflow.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/airflow.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
