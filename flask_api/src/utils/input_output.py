@@ -4,19 +4,19 @@ import os
 
 
 def read_data_pgsql(
-    database: str, yf_stock_name: str = None, tbl_name: str = None, query: str = None
+    database: str = None, tbl_name: str = None, query: str = None
 ) -> pd.DataFrame:
+
+    if not database:
+        raise Exception("You must provide a database")
 
     print(f"Reading data from PGSQL")
     engine = create_engine(
         f"postgresql://{os.getenv('PGSQL_USERNAME')}:{os.getenv('PGSQL_PASSWORD')}@{os.getenv('PGSQL_HOST')}:{os.getenv('PGSQL_PORT')}/{database}"
     )
 
-    if yf_stock_name and not tbl_name:
-        tbl_name = yf_stock_name.replace(".SA", "").lower()
-
-    if not tbl_name:
-        raise Exception("Provide either a table name or a yahoo finance stock name")
+    if not tbl_name and not query:
+        raise Exception("Provide either a table name or a query")
 
     if not query:
         df = pd.read_sql_query(
@@ -31,22 +31,18 @@ def read_data_pgsql(
 
 def dump_data_pgsql(
     df: pd.DataFrame,
-    database: str,
-    yf_stock_name: str = None,
+    database: str = None,
     tbl_name: str = None,
-    append_data: bool = False,
+    append_data: bool = True,
 ) -> None:
+
+    if not database or not tbl_name:
+        raise Exception("You must provide a database and a table name to dump data")
 
     print(f"Dumping data to PGSQL")
     engine = create_engine(
         f"postgresql://{os.getenv('PGSQL_USERNAME')}:{os.getenv('PGSQL_PASSWORD')}@{os.getenv('PGSQL_HOST')}:{os.getenv('PGSQL_PORT')}/{database}"
     )
-
-    if yf_stock_name and not tbl_name:
-        tbl_name = yf_stock_name.replace(".SA", "").lower()
-
-    if not tbl_name:
-        raise Exception("Provide either a table name or a yahoo finance stock name")
 
     try:
         if append_data:
