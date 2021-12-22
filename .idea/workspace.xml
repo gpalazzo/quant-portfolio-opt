@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/flask_api/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/portfolio_opt.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/portfolio_opt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/test_api_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/test_api_call.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/utils/input_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/utils/input_output.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
