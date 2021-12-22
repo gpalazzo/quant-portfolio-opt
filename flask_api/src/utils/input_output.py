@@ -1,10 +1,14 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import os
+from typing import List, Any
 
 
 def read_data_pgsql(
-    database: str = None, tbl_name: str = None, query: str = None
+    database: str = None,
+    tbl_name: str = None,
+    query: str = None,
+    filter_params: List[Any] = None,
 ) -> pd.DataFrame:
 
     if not database:
@@ -24,7 +28,13 @@ def read_data_pgsql(
         )
 
     else:
-        pass  # testar execução de query aqui
+        if not filter_params:
+            df = pd.read_sql_query(query, con=engine)
+        else:
+            cursor = engine.raw_connection().cursor()
+            cursor.execute(query, filter_params)
+            df = pd.DataFrame(cursor.fetchall())
+            df.columns = cursor.keys()
 
     return df
 

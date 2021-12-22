@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from resources import HealthCheck, PortfolioOptimizer
+from resources import HealthCheck, PortfolioOptimizer, OptimizationResults
 from waitress import serve
 
 
@@ -15,7 +15,8 @@ api = Api(app)
 
 # endpoints mapping (class name, endpoint)
 api.add_resource(HealthCheck, "/health")
-api.add_resource(PortfolioOptimizer, "/portfolio_opt")
+api.add_resource(PortfolioOptimizer, "/portfolio_optimize")
+api.add_resource(OptimizationResults, "/optimization_results")
 
 # serving for all calls through port 5000
 if __name__ == "__main__":

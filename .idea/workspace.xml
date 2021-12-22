@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/flask_api/src/resources/optimization_results.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/src/test_optimization_results_call.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_api/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/portfolio_opt.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/portfolio_opt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/src/test_api_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/test_api_call.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/portfolio_opt.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/portfolio_optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/test_api_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/test_portfolio_optimizer_call.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_api/src/utils/input_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/utils/input_output.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +42,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="TaskManager">

@@ -7,7 +7,7 @@ from datetime import datetime
 import pandas as pd
 
 
-READ_RESULTS_ENDPOINT = "abc"
+READ_RESULTS_ENDPOINT = "optimization_results"
 
 
 class PortfolioOptimizer(Resource):

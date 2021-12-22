@@ -4,9 +4,9 @@ import sys
 
 host = str(sys.argv[1])
 if host == "remote":
-    url = "http://18.230.21.6:5000/portfolio_opt"
+    url = "http://18.230.21.6:5000/portfolio_optimize"
 else:
-    url = "http://localhost:5000/portfolio_opt"
+    url = "http://localhost:5000/portfolio_optimize"
 
 tickers = {"tickers": "bbdc4, abev3, xpto1, xpto2"}
 
