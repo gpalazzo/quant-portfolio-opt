@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/architecture_flows.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/flask_base.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/src/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/src/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/src/resources/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_api/src/resources/health.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/airflow.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/airflow.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
