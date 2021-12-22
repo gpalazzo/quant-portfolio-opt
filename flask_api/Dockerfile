@@ -21,7 +21,7 @@ COPY . .
 ENV PYTHONPATH="/app/src:${PYTHONPATH}"
 
 # expose container port 5000
-EXPOSE 5000
+#EXPOSE 5000
 
 # serve the api when container starts
-ENTRYPOINT ["python", "app.py"]
+ENTRYPOINT ["python", "./src/app.py"]

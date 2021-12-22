@@ -130,6 +130,21 @@ services:
     networks:
       - portf_opt_network
 
+  api:
+    build:
+      context: flask_api
+      dockerfile: Dockerfile
+    container_name: flask_api
+    env_file:
+      - flask_api/flask_base.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask_api:/app
+    restart: always
+    networks:
+      - portf_opt_network
+
 volumes:
   airflow-pgsql-volume:
   storage-pgsql-volume:
