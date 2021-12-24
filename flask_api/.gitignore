@@ -1,6 +1,7 @@
 # exclude unused files
 **/**/.idea
 **/**/__pycache__
+**/**.pyc
 
 # exclude log files
 **/**/*.log
