@@ -14,6 +14,7 @@ def data_science_pipeline():
                 node(
                     func=yahoo_finance_features,
                     inputs=[
+                        "api_optimizing_requests",
                         "yf_tickers_fte",
                         "params:days_roll_window",
                         "params:days_lookback",
