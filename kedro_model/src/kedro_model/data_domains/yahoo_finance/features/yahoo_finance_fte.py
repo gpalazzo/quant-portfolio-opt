@@ -5,11 +5,27 @@ from datetime import timedelta, datetime
 
 
 def yahoo_finance_features(
+    df_opt_requests: pd.DataFrame,
     df: pd.DataFrame,
     days_roll_window: List[int],
     days_lookback: int,
     null_pct_cut: float,
 ) -> pd.DataFrame:
+
+    tickers = str(df_opt_requests["tickers"].unique().tolist())
+
+    # TODO: substituir esses replaces por regex
+    tickers = [
+        ticker.strip()
+        .lower()
+        .replace(".sa", "")
+        .replace("'", "")
+        .replace("[", "")
+        .replace("]", "")
+        for ticker in tickers.split(",")
+    ]
+
+    df = df[["date"] + tickers]
 
     df_pre_processed = _yf_fte_pre_processing(
         df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut

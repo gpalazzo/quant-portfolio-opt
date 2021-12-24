@@ -1,0 +1,4 @@
+api_optimizing_requests:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from aux.public.optimizer_api_requests"
