@@ -11,6 +11,13 @@ config = load_and_merge_ymls(paths=CONFIG_PATH)
 
 def run_yf_stock_prices_raw():
 
+    stock_name = []
+    start_date = []
+    end_date = []
+    data_freq = []
+    price_type = []
+    status = []
+
     df_stock_names = read_data_pgsql(
         database=config["yf_stock_names_db_name"],
         tbl_name=config["yf_stock_names_tbl_name"],
@@ -22,23 +29,59 @@ def run_yf_stock_prices_raw():
 
         time.sleep(1)
 
+        interval = "1d"
+        _price_type = "Adj Close"
+
         print(f"Parsing data for stock: {stock}")
         print(f"Stock {i} out of {len(stocks)} stocks")
-        df_stock_prices = yf.download(stock, period="max", interval="1d")[
-            "Adj Close"
+        df_stock_prices = yf.download(stock, period="max", interval=interval)[
+            _price_type
         ].reset_index()
 
+        stock_name.append(stock)
+        data_freq.append(interval)
+        price_type.append(_price_type)
+
         if df_stock_prices.empty:
+            start_date.append(None)
+            end_date.append(None)
+            status.append("no_data")
             print(f"Skipping stock: {stock} because it has no price data")
             continue
 
         else:
+            start_date.append(df_stock_prices["Date"].min())
+            end_date.append(df_stock_prices["Date"].max())
+
             df_stock_prices.loc[:, "yf_stock_name"] = stock
-            dump_data_pgsql(
-                df=df_stock_prices,
-                database=config["yf_raw_stock_prices_db_name"],
-                yf_stock_name=stock,
-            )
+
+            try:
+                dump_data_pgsql(
+                    df=df_stock_prices,
+                    database=config["yf_raw_stock_prices_db_name"],
+                    yf_stock_name=stock,
+                )
+                status.append("dumped")
+
+            except Exception:
+                status.append("dump_failed")
+
+    metadata_df = pd.DataFrame(
+        {
+            "stock_names": stock_name,
+            "start_date": start_date,
+            "end_date": end_date,
+            "data_frequency": data_freq,
+            "price_type": price_type,
+            "dump_status": status,
+        }
+    )
+
+    dump_data_pgsql(
+        df=metadata_df,
+        database=config["yf_raw_stock_metadata_db_name"],
+        tbl_name=config["yf_raw_stock_metadata_tbl_name"],
+    )
 
 
 def run_yf_mktcap_raw():

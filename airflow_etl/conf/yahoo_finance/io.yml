@@ -6,6 +6,9 @@ yf_stock_names_tbl_name: "stock_names"
 # Raw
 yf_raw_stock_prices_db_name: "raw"
 
+yf_raw_stock_metadata_db_name: "raw"
+yf_raw_stock_metadata_tbl_name: "stocks_metadata"
+
 # Intermediate
 yf_int_stock_prices_db_name: "intm"
 yf_int_stock_prices_tbl_name: "all_stocks_prices_intm"

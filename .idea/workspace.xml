@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/conf/yahoo_finance/io.yml" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/conf/yahoo_finance/io.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/intermediate/yahoo_finance_int.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/stock_names_raw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" beforeDir="false" afterPath="$PROJECT_DIR$/airflow_etl/src/data_domains/yahoo_finance/raw/yahoo_finance_raw.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
