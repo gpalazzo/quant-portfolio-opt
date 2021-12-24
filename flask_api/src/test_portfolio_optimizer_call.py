@@ -8,7 +8,7 @@ if host == "remote":
 else:
     url = "http://localhost:5000/portfolio_optimize"
 
-tickers = {"tickers": "bbdc4, abev3, xpto1, xpto2"}
+tickers = {"tickers": "AMER3.SA, ANIM3.SA, APER3.SA"}
 
 post_response = requests.post(url, json=tickers)
 
