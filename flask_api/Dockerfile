@@ -12,16 +12,15 @@ RUN pip install poetry && \
     poetry lock && \
     poetry install
 
+ARG ROOT_DIR=/app
 # set work dir as /app
-WORKDIR /app
+WORKDIR $ROOT_DIR
+ENV PROJECT_ROOT_PATH=$ROOT_DIR
 
 # copy the entire project
 COPY . .
 
 ENV PYTHONPATH="/app/src:${PYTHONPATH}"
-
-# expose container port 5000
-#EXPOSE 5000
 
 # serve the api when container starts
 ENTRYPOINT ["python", "./src/app.py"]

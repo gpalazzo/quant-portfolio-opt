@@ -1,6 +1,11 @@
 from flask import Flask
 from flask_restful import Api
-from resources import HealthCheck, PortfolioOptimizer, OptimizationResults
+from resources import (
+    HealthCheck,
+    PortfolioOptimizer,
+    OptimizationResults,
+    AvailableTickers,
+)
 from waitress import serve
 
 
@@ -17,6 +22,7 @@ api = Api(app)
 api.add_resource(HealthCheck, "/health")
 api.add_resource(PortfolioOptimizer, "/portfolio_optimize")
 api.add_resource(OptimizationResults, "/optimization_results")
+api.add_resource(AvailableTickers, "/available_tickers")
 
 # serving for all calls through port 5000
 if __name__ == "__main__":
