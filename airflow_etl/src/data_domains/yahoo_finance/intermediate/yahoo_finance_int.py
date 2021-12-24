@@ -13,11 +13,13 @@ config = load_and_merge_ymls(paths=CONFIG_PATH)
 def run_yf_stock_prices_intermediate():
 
     df_stock_names = read_data_pgsql(
-        database=config["yf_stock_names_db_name"],
-        tbl_name=config["yf_stock_names_tbl_name"],
+        database=config["yf_raw_stock_metadata_db_name"],
+        tbl_name=config["yf_raw_stock_metadata_tbl_name"],
     )
 
-    stocks = df_stock_names["stocks_name"].unique().tolist()
+    df_stock_names = df_stock_names[df_stock_names["dump_status"] == "dumped"]
+
+    stocks = df_stock_names["stock_names"].unique().tolist()
 
     dfs = []
 
