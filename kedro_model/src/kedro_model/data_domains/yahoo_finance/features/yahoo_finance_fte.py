@@ -12,30 +12,42 @@ def yahoo_finance_features(
     null_pct_cut: float,
 ) -> pd.DataFrame:
 
-    tickers = str(df_opt_requests["tickers"].unique().tolist())
+    final_df = pd.DataFrame()
 
-    # TODO: substituir esses replaces por regex
-    tickers = [
-        ticker.strip()
-        .lower()
-        .replace(".sa", "")
-        .replace("'", "")
-        .replace("[", "")
-        .replace("]", "")
-        for ticker in tickers.split(",")
-    ]
+    for uuid in df_opt_requests["uuid"].unique().tolist():
+        # TODO: testar esse loop aqui
 
-    df = df[["date"] + tickers]
+        tickers = str(df_opt_requests["tickers"].unique().tolist())
 
-    df_pre_processed = _yf_fte_pre_processing(
-        df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut
-    )
+        # TODO: substituir esses replaces por regex
+        tickers = [
+            ticker.strip()
+            .lower()
+            .replace(".sa", "")
+            .replace("'", "")
+            .replace("[", "")
+            .replace("]", "")
+            for ticker in tickers.split(",")
+        ]
 
-    df_ftes = _yf_calculate_rolling_windows(
-        df=df_pre_processed, days_roll_window=days_roll_window
-    )
+        df = df[["date"] + tickers]
 
-    return df_ftes
+        df_pre_processed = _yf_fte_pre_processing(
+            df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut
+        )
+
+        df_ftes = _yf_calculate_rolling_windows(
+            df=df_pre_processed, days_roll_window=days_roll_window
+        )
+
+        df_ftes.loc[:, "uuid"] = uuid
+
+        breakpoint()
+
+        # TODO: testar se esse concat está funcionando conforme esperado
+        final_df = pd.concat([final_df, df_ftes], axis=1)
+
+    return final_df
 
 
 def yf_select_mktcap_tickers(

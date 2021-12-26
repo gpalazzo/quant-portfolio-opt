@@ -1,5 +1,5 @@
 import re
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional, Tuple
 import os
 
 import pandas as pd
@@ -162,13 +162,16 @@ class CustomSQLQueryDataSet(AbstractDataSet):
         del load_args["con"]
         return dict(sql=self._load_args["sql"], load_args=load_args)
 
-    def _parse_query_source(self) -> List[str]:
-        query_source = self._load_args["sql"].split(" ")[-1]
-        return query_source.split(".")
+    def _parse_query_source(self) -> Tuple[Any, Any]:
+        query_list = self._load_args["sql"].split(" ")
+        query_list = [item for item in query_list if len(item) > 0]
+        data_source = query_list[query_list.index("from") + 1]
+        database, schema, table = data_source.split(".")
+        return database, table
 
     def _load(self) -> pd.DataFrame:
         try:
-            database, schema, table = self._parse_query_source()
+            database, table = self._parse_query_source()
             self._load_args["con"] = self._load_args["con"].replace(
                 os.getenv("PGSQL_DATABASE"), database
             )
@@ -179,6 +182,6 @@ class CustomSQLQueryDataSet(AbstractDataSet):
             raise _get_sql_alchemy_missing_error() from exc
 
     def _save(self, data: pd.DataFrame) -> None:
-        database, schema, table = self._parse_query_source()
+        database, table = self._parse_query_source()
         _con = self._load_args["con"].replace(os.getenv("PGSQL_DATABASE"), database)
         data.to_sql(table, _con, if_exists="replace", index=False)
