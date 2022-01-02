@@ -1,4 +1,12 @@
 api_optimizing_requests:
   type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
-  sql: "select * from aux.public.optimizer_api_requests where status = 'pending'"
+  sql: "select * from aux.public.optimizer_api_requests"
+
+# TODO: melhorar isso aqui, não faz sentido ter a mesma query.
+  # o melhor seria injetar um script SQL atualizando os valores
+  # para determinados uuids
+api_optimizing_requests_update:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from aux.public.optimizer_api_requests"

@@ -15,9 +15,10 @@ def yahoo_finance_features(
     final_df = pd.DataFrame()
 
     for uuid in df_opt_requests["uuid"].unique().tolist():
-        # TODO: testar esse loop aqui
 
-        tickers = str(df_opt_requests["tickers"].unique().tolist())
+        df_aux = df_opt_requests[df_opt_requests["uuid"] == uuid]
+
+        tickers = str(df_aux["tickers"].unique().tolist())
 
         # TODO: substituir esses replaces por regex
         tickers = [
@@ -42,10 +43,7 @@ def yahoo_finance_features(
 
         df_ftes.loc[:, "uuid"] = uuid
 
-        breakpoint()
-
-        # TODO: testar se esse concat está funcionando conforme esperado
-        final_df = pd.concat([final_df, df_ftes], axis=1)
+        final_df = final_df.append(df_ftes)
 
     return final_df
 

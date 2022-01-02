@@ -3,7 +3,7 @@ from kedro_model.data_domains.yahoo_finance import (
     yahoo_finance_features,
     yf_select_mktcap_tickers,
 )
-from kedro_model.models import model_run
+from kedro_model.models import run_black_litterman
 
 
 def data_science_pipeline():
@@ -34,28 +34,18 @@ def data_science_pipeline():
         )
     )
 
-    generic_algorithm_pipeline = pipeline(
+    black_litterman_pipeline = pipeline(
         Pipeline(
             [
                 node(
-                    func=model_run,
-                    inputs=[
-                        "yf_tickers_mi",
-                        "params:num_generations",
-                        "params:crossover_type",
-                        "params:mutation_type",
-                        "params:mutation_percent_genes",
-                        "params:parent_selection_type",
-                        "params:keep_parents",
-                        "params:num_parents_mating",
-                        "params:sol_per_pop",
-                    ],
-                    outputs=["model_results", "model_runtime"],
-                    name="process_ga_model",
+                    func=run_black_litterman,
+                    inputs=["yf_tickers_mi", "api_optimizing_requests"],
+                    outputs=["model_results", "api_optimizing_requests_update"],
+                    name="process_bl_model",
                 )
             ],
-            tags=["ga_model"],
+            tags=["bl_model"],
         )
     )
 
-    return yahoo_finance_pipeline + generic_algorithm_pipeline
+    return yahoo_finance_pipeline + black_litterman_pipeline

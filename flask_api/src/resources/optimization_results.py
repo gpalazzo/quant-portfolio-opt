@@ -26,6 +26,7 @@ class OptimizationResults(Resource):
         pass
 
     def _build_query(self):
+        # TODO: trocar essa tabela pela tabela oficial de resultados
         sql = f"select * from optimizer_api_requests where uuid in ('{self.input}')"
         return sql
 
