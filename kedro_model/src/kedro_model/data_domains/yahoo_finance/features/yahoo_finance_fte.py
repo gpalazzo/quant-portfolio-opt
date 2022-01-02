@@ -14,7 +14,9 @@ def yahoo_finance_features(
 
     final_df = pd.DataFrame()
 
-    for uuid in df_opt_requests["uuid"].unique().tolist():
+    df_pending = df_opt_requests[df_opt_requests["status"] == "pending"]
+
+    for uuid in df_pending["uuid"].unique().tolist():
 
         df_aux = df_opt_requests[df_opt_requests["uuid"] == uuid]
 
