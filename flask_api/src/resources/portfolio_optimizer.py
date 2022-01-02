@@ -31,6 +31,7 @@ class PortfolioOptimizer(Resource):
 
     @staticmethod
     def _get_available_tickers() -> List[str]:
+        # TODO: fazer essa chamada usando o endpoint de Available Tickers
         config = load_and_merge_ymls(paths=CONFIG_PATH)
         df = read_data_pgsql(
             database=config["yf_raw_stock_metadata_db_name"],

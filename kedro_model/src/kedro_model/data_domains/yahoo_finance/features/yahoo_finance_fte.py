@@ -12,30 +12,42 @@ def yahoo_finance_features(
     null_pct_cut: float,
 ) -> pd.DataFrame:
 
-    tickers = str(df_opt_requests["tickers"].unique().tolist())
+    final_df = pd.DataFrame()
 
-    # TODO: substituir esses replaces por regex
-    tickers = [
-        ticker.strip()
-        .lower()
-        .replace(".sa", "")
-        .replace("'", "")
-        .replace("[", "")
-        .replace("]", "")
-        for ticker in tickers.split(",")
-    ]
+    df_pending = df_opt_requests[df_opt_requests["status"] == "pending"]
 
-    df = df[["date"] + tickers]
+    for uuid in df_pending["uuid"].unique().tolist():
 
-    df_pre_processed = _yf_fte_pre_processing(
-        df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut
-    )
+        df_aux = df_opt_requests[df_opt_requests["uuid"] == uuid]
 
-    df_ftes = _yf_calculate_rolling_windows(
-        df=df_pre_processed, days_roll_window=days_roll_window
-    )
+        tickers = str(df_aux["tickers"].unique().tolist())
 
-    return df_ftes
+        # TODO: substituir esses replaces por regex
+        tickers = [
+            ticker.strip()
+            .lower()
+            .replace(".sa", "")
+            .replace("'", "")
+            .replace("[", "")
+            .replace("]", "")
+            for ticker in tickers.split(",")
+        ]
+
+        df = df[["date"] + tickers]
+
+        df_pre_processed = _yf_fte_pre_processing(
+            df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut
+        )
+
+        df_ftes = _yf_calculate_rolling_windows(
+            df=df_pre_processed, days_roll_window=days_roll_window
+        )
+
+        df_ftes.loc[:, "uuid"] = uuid
+
+        final_df = final_df.append(df_ftes)
+
+    return final_df
 
 
 def yf_select_mktcap_tickers(
