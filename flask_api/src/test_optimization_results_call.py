@@ -8,7 +8,7 @@ if host == "remote":
 else:
     url = "http://localhost:5000/optimization_results"
 
-tickers = {"uuid": "f9a47a4c-50e9-4606-9c8e-f17cc6477b6e"}
+tickers = {"uuid": "bd54469a-9a25-4a31-a4f0-ca3f4c906899"}
 
 post_response = requests.post(url, json=tickers)
 
