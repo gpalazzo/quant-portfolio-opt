@@ -1,33 +1,23 @@
 from flask_restful import Resource
 from flask import request
-from typing import Tuple, List, Dict, Any
+from typing import Tuple, Dict, Any
 from utils import read_data_pgsql
 import pandas as pd
-
-
-TABLE_NAME = "optimizer_api_requests"
 
 
 class OptimizationResults(Resource):
     def __init__(self):
         self.input = request.get_json().get("uuid")
-        self.input_parsed = self._parse_input()
         self._validate_input()
         self.query = self._build_query()
         self.data = self._read_data()
-        # self.output = self.query
         self.output = self._build_output()
-
-    def _parse_input(self) -> List[str]:
-        tickers = [ticker.strip() for ticker in self.input.split(",")]
-        return tickers
 
     def _validate_input(self):
         pass
 
     def _build_query(self):
-        # TODO: trocar essa tabela pela tabela oficial de resultados
-        sql = f"select * from optimizer_api_requests where uuid in ('{self.input}')"
+        sql = f"select * from bl_report where uuid in ('{self.input}')"
         return sql
 
     def _read_data(self):
@@ -47,12 +37,12 @@ class OptimizationResults(Resource):
             }
 
         else:
-            # aqui faz o parsing do output que vai sair do Kedro
             _data = self.data.astype(str)
+            _data = _data.drop(columns=["uuid"])
 
             return {
                 "optimization_status": "finished",
-                "results": _data.to_dict(),
+                "results": _data.to_dict(orient="list"),
                 "uuid": self.input,
             }
 
