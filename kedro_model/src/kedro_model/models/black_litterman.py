@@ -3,6 +3,18 @@ import numpy as np
 from typing import Tuple
 
 
+def bl_prior():
+    pass
+
+
+def bl_investors_view():
+    pass
+
+
+def bl_posterior():
+    pass
+
+
 def run_black_litterman(
     df: pd.DataFrame, df_requests: pd.DataFrame
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:

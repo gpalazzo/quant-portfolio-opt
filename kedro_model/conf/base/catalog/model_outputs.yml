@@ -1,6 +1,0 @@
-model_results:
-  type: kedro_model.io.CustomSQLQueryDataSet
-  credentials: postgres
-  sql: "select * from aux.public.bl_report"
-  save_args:
-    if_exists: "append"

@@ -44,16 +44,34 @@ def yahoo_finance_features(
 
 
 def yf_select_mktcap_tickers(
-    df_stocks_mktcap: pd.DataFrame, df_stocks_prices: pd.DataFrame
+    df_stocks_mktcap: pd.DataFrame, yf_ticker_prices: pd.DataFrame
 ) -> pd.DataFrame:
 
-    selected_stocks = df_stocks_prices.T.index.tolist()
+    final_df = pd.DataFrame()
 
-    df_stocks_selected_mktcap = df_stocks_mktcap[
-        df_stocks_mktcap["stocks"].isin(selected_stocks)
-    ]
+    yf_ticker_prices = yf_ticker_prices.drop(columns=["date"])
 
-    return df_stocks_selected_mktcap
+    for uuid in yf_ticker_prices["uuid"].unique().tolist():
+
+        df_aux = yf_ticker_prices[yf_ticker_prices["uuid"] == uuid].drop(
+            columns=["uuid"]
+        )
+
+        """
+        due to the append method in previous step, there might be tickers with 
+        all values null in a column. it means that ticker must not be consider for 
+        optimization in the given uuid
+        """
+        df_dropped = df_aux.dropna(axis=1, how="all")
+        tickers = df_dropped.columns.tolist()
+
+        df_filtered = df_stocks_mktcap[df_stocks_mktcap["stocks"].isin(tickers)]
+
+        df_filtered.loc[:, "uuid"] = uuid
+
+        final_df = final_df.append(df_filtered)
+
+    return final_df
 
 
 def _yf_fte_pre_processing(

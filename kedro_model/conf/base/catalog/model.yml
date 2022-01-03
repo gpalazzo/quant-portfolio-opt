@@ -1,0 +1,24 @@
+# ***** Model initial calculations *****
+yf_ticker_prices_mi:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.stocks_prices"
+
+yf_ticker_mktcap_mi:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.stocks_mktcap"
+
+# ***** Model staging calculations *****
+bl_prior:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.bl_prior"
+
+# ***** Model final output *****
+model_results:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from aux.public.bl_report"
+  save_args:
+    if_exists: "append"
