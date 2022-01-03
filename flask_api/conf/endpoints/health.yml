@@ -6,4 +6,4 @@ produces:
 
 responses:
   200:
-    description: API is working and health
+    description: "OK"
