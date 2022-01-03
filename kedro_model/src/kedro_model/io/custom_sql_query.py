@@ -111,7 +111,11 @@ class CustomSQLQueryDataSet(AbstractDataSet):
     """
 
     def __init__(
-        self, sql: str, credentials: Dict[str, Any], load_args: Dict[str, Any] = None
+        self,
+        sql: str,
+        credentials: Dict[str, Any],
+        load_args: Dict[str, Any] = None,
+        save_args: Dict[str, Any] = None,
     ) -> None:
         """Creates a new ``SQLQueryDataSet``.
 
@@ -146,6 +150,7 @@ class CustomSQLQueryDataSet(AbstractDataSet):
             )
 
         default_load_args = {}  # type: Dict[str, Any]
+        default_save_args = {}  # type: Dict[str, Any]
 
         self._load_args = (
             {**default_load_args, **load_args}
@@ -153,8 +158,19 @@ class CustomSQLQueryDataSet(AbstractDataSet):
             else default_load_args
         )
 
+        self._save_args = (
+            {**default_save_args, **save_args}
+            if save_args is not None
+            else default_save_args
+        )
+
         self._load_args["sql"] = sql
         self._load_args["con"] = credentials["con"]
+
+        try:
+            self.if_exists = self._save_args["if_exists"]
+        except KeyError:
+            self.if_exists = "replace"
 
     def _describe(self) -> Dict[str, Any]:
         load_args = self._load_args.copy()
@@ -184,4 +200,4 @@ class CustomSQLQueryDataSet(AbstractDataSet):
     def _save(self, data: pd.DataFrame) -> None:
         database, table = self._parse_query_source()
         _con = self._load_args["con"].replace(os.getenv("PGSQL_DATABASE"), database)
-        data.to_sql(table, _con, if_exists="replace", index=False)
+        data.to_sql(table, _con, if_exists=self.if_exists, index=False)
