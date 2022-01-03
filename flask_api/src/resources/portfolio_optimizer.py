@@ -6,6 +6,12 @@ import uuid
 from datetime import datetime
 import pandas as pd
 import os
+from flasgger.utils import swag_from
+from pathlib import Path
+
+
+# get the path to the root project directory
+project_dir = Path(__file__).resolve().parents[2]
 
 
 READ_AVAILABLE_TICKERS_ENDPOINT = "/available_tickers"
@@ -101,6 +107,7 @@ class PortfolioOptimizer(Resource):
                 "error": self.dump_status,
             }
 
+    @swag_from(f"{project_dir}/conf/endpoints/portfolio_optimize.yml")
     def post(self) -> Tuple[Dict[str, Any], int]:
         if self.dump_status == "success":
             self.post_code = 201

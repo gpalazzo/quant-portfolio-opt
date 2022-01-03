@@ -2,6 +2,12 @@ from flask_restful import Resource
 from utils import read_data_pgsql, load_and_merge_ymls
 import os
 from typing import Dict, List
+from flasgger.utils import swag_from
+from pathlib import Path
+
+
+# get the path to the root project directory
+project_dir = Path(__file__).resolve().parents[2]
 
 
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/io.yml"]
@@ -9,6 +15,7 @@ CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/io.yml"]
 
 class AvailableTickers(Resource):
     @staticmethod
+    @swag_from(f"{project_dir}/conf/endpoints/available_tickers.yml")
     def get() -> Dict[str, List[str]]:
         config = load_and_merge_ymls(paths=CONFIG_PATH)
 

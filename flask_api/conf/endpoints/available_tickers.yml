@@ -1,0 +1,9 @@
+summary: "Get available tickers for optimization"
+description: "Return the list of available tickers for optimization"
+
+produces:
+- "application/json"
+
+responses:
+  200:
+    description: Tickers retrieved successfully

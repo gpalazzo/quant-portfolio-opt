@@ -1,0 +1,24 @@
+summary: "Retrieve results from the assets optimization"
+description: "Parse results from a given uuid"
+
+consumes:
+- "application/json"
+produces:
+- "application/json"
+
+parameters:
+- in: "body"
+  name: "uuid"
+  description: "Receives a uuid to retrieve results from optimization"
+  required: true
+  schema:
+    type: "object"
+    properties:
+      uuid:
+        type: "string"
+        format: "string"
+        example : "bc5f6333-2d34-402e-af88-5d925d783b67"
+
+responses:
+  201:
+    description: "Results were retrieves successfully"
