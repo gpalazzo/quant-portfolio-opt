@@ -32,7 +32,7 @@ class OptimizationResults(Resource):
         if self.data.empty:
             return {
                 "optimization_status": "running",
-                "results": None,
+                "results": "",
                 "uuid": self.input,
             }
 
