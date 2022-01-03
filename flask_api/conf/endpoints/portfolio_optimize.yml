@@ -1,0 +1,27 @@
+summary: "Receives a list of assets to optimize"
+description: "List of tickers"
+
+consumes:
+- "application/json"
+produces:
+- "application/json"
+
+parameters:
+- in: "body"
+  name: "tickers"
+  description: "Receives a list of tickers to optimize"
+  required: true
+  schema:
+    type: "object"
+    properties:
+      tickers:
+        type: "string"
+        format: "string"
+        example : "AMER3.SA, ANIM3.SA, APER3.SA"
+
+responses:
+  201:
+    description: "Results were retrieves successfully"
+
+  500:
+    description: "Internal server error"

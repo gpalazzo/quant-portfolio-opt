@@ -1,0 +1,9 @@
+summary: "Verify if API is healthy"
+description: "Return OK is API is working and healthy"
+
+produces:
+- "string"
+
+responses:
+  200:
+    description: API is working and health

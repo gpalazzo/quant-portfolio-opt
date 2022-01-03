@@ -2,7 +2,7 @@ import requests
 
 
 url = "http://localhost:5000/optimization_results"
-tickers = {"uuid": "bd54469a-9a25-4a31-a4f0-ca3f4c906899"}
+tickers = {"uuid": "740e263e-f07c-445c-b722-f5cb663740a8"}
 
 post_response = requests.post(url, json=tickers)
 
