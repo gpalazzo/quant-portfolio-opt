@@ -15,20 +15,9 @@ HEADERS = {
 def run_stock_names_raw():
     config = load_and_merge_ymls(paths=CONFIG_PATH)
 
-    priority_stocks = {}
-    prioritized_stocks = _get_prioritized_stocks()
-
     all_stocks = _get_all_stocks_b3()
 
-    for stock in all_stocks:
-        if stock in prioritized_stocks:
-            priority_stocks[stock] = "yes"
-        else:
-            priority_stocks[stock] = "no"
-
-    df = pd.DataFrame(
-        {"stocks_name": priority_stocks.keys(), "priority": priority_stocks.values()}
-    )
+    df = pd.DataFrame({"stocks_name": all_stocks})
 
     df = df.iloc[:50, :]
 
@@ -52,24 +41,3 @@ def _get_all_stocks_b3() -> List[str]:
     stocks = [f"{stock}.SA" for stock in df["Papel"].unique().tolist()]
 
     return stocks
-
-
-def _get_prioritized_stocks(target_index: str = "IBXX.SA") -> List[str]:
-    """This function uses the `IBXX.SA` index only to find the companies within IBXX
-
-    Args:
-        target_index:
-
-    Returns:
-
-    """
-
-    response = requests.get(
-        f"https://finance.yahoo.com/quote/{target_index}/components?p={target_index}",
-        headers=HEADERS,
-        verify=False,
-    )
-
-    df = pd.read_html(response.text)[0]
-
-    return list(set(df["Symbol"]))

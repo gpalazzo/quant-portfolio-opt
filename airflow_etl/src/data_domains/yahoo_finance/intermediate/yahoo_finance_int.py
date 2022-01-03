@@ -60,6 +60,8 @@ def run_yf_mktcap_intermediate():
         tbl_name=config["yf_raw_stock_mktcap_tbl_name"],
     )
 
+    df = df[df["status"] == "dumped"]
+
     dump_data_pgsql(
         df=df,
         database=config["yf_int_stock_mktcap_db_name"],

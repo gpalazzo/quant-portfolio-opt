@@ -8,6 +8,9 @@ import time
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 config = load_and_merge_ymls(paths=CONFIG_PATH)
 
+# add indexes to get price as well
+INDEXES_PRICES = ["^BVSP"]
+
 
 def run_yf_stock_prices_raw():
 
@@ -23,7 +26,7 @@ def run_yf_stock_prices_raw():
         tbl_name=config["yf_stock_names_tbl_name"],
     )
 
-    stocks = df_stock_names["stocks_name"].unique().tolist()
+    stocks = df_stock_names["stocks_name"].unique().tolist() + INDEXES_PRICES
 
     for i, stock in enumerate(stocks, 1):
 
@@ -86,23 +89,23 @@ def run_yf_stock_prices_raw():
 
 def run_yf_mktcap_raw():
 
+    stock_name = []
+    mktcap = []
+    status = []
+
     df_stock_names = read_data_pgsql(
         database=config["yf_stock_names_db_name"],
         tbl_name=config["yf_stock_names_tbl_name"],
     )
 
-    stocks = (
-        df_stock_names[df_stock_names["priority"] == "yes"]["stocks_name"]
-        .unique()
-        .tolist()
-    )
-
-    mktcap_dict = {}
+    stocks = df_stock_names["stocks_name"].unique().tolist()
 
     for i, stock in enumerate(stocks, 1):
 
         print(f"Parsing data for stock: {stock}")
         print(f"Stock {i} out of {len(stocks)} stocks")
+
+        stock_name.append(stock)
 
         try:
             stock_mktcap = yf.Ticker(stock).info["marketCap"]
@@ -111,17 +114,19 @@ def run_yf_mktcap_raw():
 
         if stock_mktcap is None or stock_mktcap == 0:
             print(f"Skipping stock: {stock} because it has no market cap data")
-            continue
+            mktcap.append(None)
+            status.append("no_data")
 
         else:
-            mktcap_dict[stock] = stock_mktcap
+            mktcap.append(stock_mktcap)
+            status.append("dumped")
 
-    df_stock_mktcap = pd.DataFrame(
-        {"stocks": mktcap_dict.keys(), "mktcap": mktcap_dict.values()}
+    metadata_df = pd.DataFrame(
+        {"stocks": stock_name, "mktcap": mktcap, "status": status}
     )
 
     dump_data_pgsql(
-        df=df_stock_mktcap,
+        df=metadata_df,
         database=config["yf_raw_stock_mktcap_db_name"],
         tbl_name=config["yf_raw_stock_mktcap_tbl_name"],
     )
