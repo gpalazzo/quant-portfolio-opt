@@ -13,7 +13,7 @@ def read_data_pgsql(
     )
 
     if yf_stock_name and not tbl_name:
-        tbl_name = yf_stock_name.replace(".SA", "").lower()
+        tbl_name = yf_stock_name.replace(".SA", "").replace("^", "").lower()
 
     if not tbl_name:
         raise Exception("Provide either a table name or a yahoo finance stock name")
@@ -43,7 +43,7 @@ def dump_data_pgsql(
     )
 
     if yf_stock_name and not tbl_name:
-        tbl_name = yf_stock_name.replace(".SA", "").lower()
+        tbl_name = yf_stock_name.replace(".SA", "").replace("^", "").lower()
 
     if not tbl_name:
         raise Exception("Provide either a table name or a yahoo finance stock name")

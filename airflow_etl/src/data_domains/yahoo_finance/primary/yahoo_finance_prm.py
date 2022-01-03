@@ -13,7 +13,7 @@ def run_yf_stock_prices_primary():
         tbl_name=config["yf_int_stock_prices_tbl_name"],
     )
 
-    df.columns = [col.lower().replace(".sa", "") for col in df.columns]
+    df.columns = [col.lower().replace(".sa", "").replace("^", "") for col in df.columns]
 
     dump_data_pgsql(
         df=df,
@@ -28,6 +28,8 @@ def run_yf_mktcap_primary():
         database=config["yf_int_stock_mktcap_db_name"],
         tbl_name=config["yf_int_stock_mktcap_tbl_name"],
     )
+
+    df = df.drop(columns=["status"])
 
     cols = df.select_dtypes(include=[object]).columns
 
