@@ -90,14 +90,14 @@ class PortfolioOptimizer(Resource):
                 "optimization_status": "started",
                 "results_endpoint": READ_RESULTS_ENDPOINT,
                 "uuid": str(self.uuid),
-                "error": None,
+                "error": "",
             }
 
         else:
             return {
                 "optimization_status": "fail",
-                "results_endpoint": None,
-                "uuid": None,
+                "results_endpoint": "",
+                "uuid": "",
                 "error": self.dump_status,
             }
 

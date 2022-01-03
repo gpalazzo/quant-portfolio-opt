@@ -4,7 +4,7 @@
     <list default="true" id="0cf2776b-fd16-49f4-9781-e4090a6f37ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_api/src/resources/optimization_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/optimization_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_api/src/test_optimization_results_call.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/test_optimization_results_call.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_api/src/resources/portfolio_optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_api/src/resources/portfolio_optimizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
