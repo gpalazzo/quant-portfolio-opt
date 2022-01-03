@@ -16,7 +16,6 @@ def data_science_pipeline():
                     inputs=[
                         "api_optimizing_requests",
                         "yf_tickers_fte",
-                        "params:days_roll_window",
                         "params:days_lookback",
                         "params:null_pct_cut",
                     ],
