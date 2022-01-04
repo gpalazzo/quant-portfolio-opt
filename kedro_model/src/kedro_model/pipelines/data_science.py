@@ -4,7 +4,7 @@ from kedro_model.data_domains.yahoo_finance import (
     yf_select_mktcap_tickers,
 )
 from kedro_model.models import (
-    run_black_litterman,
+    bl_final_parser,
     bl_prior,
     bl_investors_view,
     bl_posterior,
@@ -45,16 +45,37 @@ def data_science_pipeline():
         Pipeline(
             [
                 node(
-                    func=run_black_litterman,
-                    inputs=["yf_ticker_prices_mi", "api_optimizing_requests"],
-                    outputs=["model_results", "api_optimizing_requests_update"],
-                    name="process_bl_model",
+                    func=bl_prior,
+                    inputs=[
+                        "yf_ticker_prices_mi",
+                        "yf_ticker_mktcap_mi",
+                        "api_optimizing_requests",
+                    ],
+                    outputs=["bl_prior", "bl_cov_prices"],
+                    name="process_bl_prior",
                 ),
                 node(
-                    func=bl_prior,
-                    inputs=["yf_ticker_prices_mi", "api_optimizing_requests"],
-                    outputs="bl_prior",
-                    name="process_bl_prior",
+                    func=bl_investors_view,
+                    inputs=["bl_prior", "api_optimizing_requests"],
+                    outputs="bl_investors_view",
+                    name="process_bl_investors_view",
+                ),
+                node(
+                    func=bl_posterior,
+                    inputs=[
+                        "bl_prior",
+                        "bl_investors_view",
+                        "bl_cov_prices",
+                        "api_optimizing_requests",
+                    ],
+                    outputs="bl_posterior",
+                    name="process_bl_posterior",
+                ),
+                node(
+                    func=bl_final_parser,
+                    inputs=["bl_posterior", "api_optimizing_requests"],
+                    outputs=["model_results", "api_optimizing_requests_update"],
+                    name="process_bl_parser",
                 ),
             ],
             tags=["bl_model"],

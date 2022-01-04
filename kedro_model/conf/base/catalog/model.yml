@@ -15,6 +15,21 @@ bl_prior:
   credentials: postgres
   sql: "select * from mi.public.bl_prior"
 
+bl_cov_prices:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.bl_cov_prices"
+
+bl_investors_view:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.bl_investors_view"
+
+bl_posterior:
+  type: kedro_model.io.CustomSQLQueryDataSet
+  credentials: postgres
+  sql: "select * from mi.public.bl_posterior"
+
 # ***** Model final output *****
 model_results:
   type: kedro_model.io.CustomSQLQueryDataSet

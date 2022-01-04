@@ -30,7 +30,7 @@ def yahoo_finance_features(
             for ticker in tickers.split(",")
         ]
 
-        df = df[["date"] + tickers]
+        df = df[["date", "bvsp"] + tickers]
 
         df_pre_processed = _yf_fte_pre_processing(
             df=df, days_lookback=days_lookback, null_pct_cut=null_pct_cut
