@@ -20,6 +20,7 @@ ENV PROJECT_ROOT_PATH=$ROOT_DIR
 # copy the entire project
 COPY . .
 
+# add project's file to PYTHONPATH
 ENV PYTHONPATH="/app/src:${PYTHONPATH}"
 
 # serve the api when container starts

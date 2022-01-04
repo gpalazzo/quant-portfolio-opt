@@ -1,3 +1,5 @@
+# Swagger API docs for `portfolio_optimize` endpoint
+
 summary: "Receives a list of assets to optimize"
 description: "List of tickers"
 
