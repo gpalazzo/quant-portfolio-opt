@@ -1,8 +1,10 @@
+# io configuration layers
+
 # ---------- STOCK NAMES ---------- #
 yf_stock_names_db_name: "aux"
 yf_stock_names_tbl_name: "stock_names"
 
-# ---------- STOCK NAMES ---------- #
+# ---------- STOCK PRICES ---------- #
 # Raw
 yf_raw_stock_prices_db_name: "raw"
 

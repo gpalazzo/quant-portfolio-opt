@@ -5,15 +5,23 @@ import os
 import time
 
 
+# reading configs from yml file
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 config = load_and_merge_ymls(paths=CONFIG_PATH)
 
 # add indexes to get price as well
+# using IBOVESPA index for the risk aversion parameter in Black-Litterman model
 INDEXES_PRICES = ["^BVSP"]
 
 
-def run_yf_stock_prices_raw():
+def run_yf_stock_prices_raw() -> None:
+    """Load, parse and dump stock prices data
 
+    Returns:
+        None, it dumps data to a PostgreSQL table instead
+    """
+
+    # lists to save info on each iteration to create dataframe later on
     stock_name = []
     start_date = []
     end_date = []
@@ -26,6 +34,7 @@ def run_yf_stock_prices_raw():
         tbl_name=config["yf_stock_names_tbl_name"],
     )
 
+    # add index price
     stocks = df_stock_names["stocks_name"].unique().tolist() + INDEXES_PRICES
 
     for i, stock in enumerate(stocks, 1):
@@ -39,7 +48,7 @@ def run_yf_stock_prices_raw():
         print(f"Stock {i} out of {len(stocks)} stocks")
         df_stock_prices = yf.download(stock, period="max", interval=interval)[
             _price_type
-        ].reset_index()
+        ].reset_index()  # get adjusted close price for every stock
 
         stock_name.append(stock)
         data_freq.append(interval)
@@ -87,8 +96,14 @@ def run_yf_stock_prices_raw():
     )
 
 
-def run_yf_mktcap_raw():
+def run_yf_mktcap_raw() -> None:
+    """Load, parse and dump market capitalization data
 
+    Returns:
+        None, it dumps data to a PostgreSQL table instead
+    """
+
+    # lists to save info on each iteration to create dataframe later on
     stock_name = []
     mktcap = []
     status = []
@@ -107,6 +122,7 @@ def run_yf_mktcap_raw():
 
         stock_name.append(stock)
 
+        # attempt to retrieve market cap data
         try:
             stock_mktcap = yf.Ticker(stock).info["marketCap"]
         except KeyError:

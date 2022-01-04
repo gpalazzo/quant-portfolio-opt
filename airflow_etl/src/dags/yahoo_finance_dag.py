@@ -1,3 +1,7 @@
+"""
+DAGS having Yahoo Finance as the data source
+"""
+
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
@@ -12,7 +16,7 @@ from data_domains.yahoo_finance import (
 )
 
 
-# stock prices
+# yahoo finance stock prices DAG
 with DAG(
     dag_id="yf_stock_prices",
     description="All stock prices for yahoo_finance",
@@ -58,7 +62,7 @@ with DAG(
     )
 
 
-# market capitalization
+# yahoo finance market capitalization DAG
 with DAG(
     dag_id="yf_mktcap",
     description="All stock market cap for yahoo_finance",
