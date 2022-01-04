@@ -139,6 +139,11 @@ services:
       - flask_api/flask_base.env
     ports:
       - "5000:5000"
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://localhost:5000/health" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
     volumes:
       - ./flask_api:/app
     restart: always
