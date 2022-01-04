@@ -12,6 +12,8 @@ from flasgger import Swagger
 
 # flask app
 app = Flask(__name__)
+
+# add swagger conf
 app.config["SWAGGER"] = {
     "title": "Quant Portfolio Optimizer API",
     "description": "API for optimizing assets allocation",
@@ -31,10 +33,11 @@ swagger_config = {
     ],
     "static_url_path": "/flasgger_static",
     "swagger_ui": True,
-    "specs_route": "/apidocs",
+    "specs_route": "/apidocs",  # endpoint for reaching API docs
 }
 
-# slash trailing disabled, i.e., it responds to call regardless of having a slash (/) at the end of the URL or not
+# slash trailing disabled, i.e., it responds to call regardless of having a
+# slash (/) at the end of the URL or not
 app.url_map.strict_slashes = False
 
 swagger = Swagger(app, config=swagger_config)
@@ -50,5 +53,5 @@ api.add_resource(AvailableTickers, "/available_tickers")
 
 # serving for all calls through port 5000
 if __name__ == "__main__":
-    # serve(app, host="0.0.0.0", port=5000)
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    serve(app, host="0.0.0.0", port=5000)
+    # app.run(host="0.0.0.0", port=5000, debug=True)

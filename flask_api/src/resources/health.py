@@ -8,16 +8,12 @@ project_dir = Path(__file__).resolve().parents[2]
 
 
 class HealthCheck(Resource):
-    """
-    Class only used as health check return
-    It should return a HTTP 200 response code when invoked
-    """
-
     @staticmethod
-    @swag_from(f"{project_dir}/conf/endpoints/health.yml")
+    @swag_from(
+        f"{project_dir}/conf/endpoints/health.yml"
+    )  # parse swagger docs from file
     def get() -> str:
-        """
-        Will be activated when the endpoint receives a HTTP GET method
+        """Invoked when endpoint receives HTTP GET method
 
         Returns:
              string only aiming a HTTP 200 response code

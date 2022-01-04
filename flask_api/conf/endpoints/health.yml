@@ -1,3 +1,5 @@
+# Swagger API docs for `health` endpoint
+
 summary: "Verify if API is healthy"
 description: "Return OK is API is working and healthy"
 
