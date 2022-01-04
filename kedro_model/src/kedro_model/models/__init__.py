@@ -1,2 +1,6 @@
-from .genetic_algorithm import model_run
-from .black_litterman import run_black_litterman
+from .black_litterman import (
+    bl_final_parser,
+    bl_prior,
+    bl_investors_view,
+    bl_posterior,
+)
