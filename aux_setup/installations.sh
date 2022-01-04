@@ -1,7 +1,7 @@
-# base
-sudo passwd ubuntu #asks for a new password to execute su commands
-
 # technologies already installed by default: git, vim
+
+# base
+sudo passwd $USER #asks for a new password to execute su commands
 
 # update
 sudo apt update
@@ -19,7 +19,7 @@ sudo apt-get install python3.7
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh && rm -rf ./Miniconda3-latest-Linux-x86_64.sh
-echo 'export PATH="/home/ubuntu/miniconda3/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="/home/$USER/miniconda3/bin:$PATH"' >> ~/.bashrc
 
 # docker
 sudo apt install apt-transport-https ca-certificates curl software-properties-common #install pre-requisites
