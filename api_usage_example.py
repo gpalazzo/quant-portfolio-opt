@@ -13,8 +13,8 @@ avail_tickers_url = f"{BASE_URL}/available_tickers"
 avail_tickers_r = requests.get(avail_tickers_url)
 stocks = eval(avail_tickers_r.text)["available_stocks"]
 
-# 2. select the first 5 stocks randomly for optimization
-stocks_opt = stocks[:5]
+# 2. select the first N stocks randomly for optimization
+stocks_opt = stocks[:30]
 
 # 3. parse stocks from list to string as API is expecting
 stocks_opt_parsed = ", ".join([str(stock) for stock in stocks_opt])

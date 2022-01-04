@@ -19,7 +19,7 @@ def run_stock_names_raw():
 
     df = pd.DataFrame({"stocks_name": all_stocks})
 
-    df = df.iloc[:50, :]
+    df = df.iloc[:100, :]
 
     dump_data_pgsql(
         df=df,
