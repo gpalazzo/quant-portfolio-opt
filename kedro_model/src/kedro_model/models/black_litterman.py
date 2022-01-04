@@ -17,17 +17,6 @@ def bl_prior(
     final_df = pd.DataFrame()
     cov_df = pd.DataFrame()
 
-    df_mktcap = df_mktcap.append(
-        pd.DataFrame(
-            {
-                "stocks": "amer3",
-                "mktcap": 99999.9,
-                "uuid": "eaf6a1da-f3b6-4191-8ec2-c9f23d4bf918",
-            },
-            index=[0],
-        )
-    )
-
     df_pending = df_requests[df_requests["status"] == "pending"]
 
     for uuid in df_pending["uuid"].unique().tolist():
