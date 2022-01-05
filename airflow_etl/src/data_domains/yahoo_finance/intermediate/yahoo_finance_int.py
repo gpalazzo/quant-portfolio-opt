@@ -6,17 +6,25 @@ from sqlalchemy.exc import ProgrammingError
 from time import sleep
 
 
+# reading configs from yml file
 CONFIG_PATH = [f"{os.getenv('PROJECT_ROOT_PATH')}/conf/yahoo_finance/io.yml"]
 config = load_and_merge_ymls(paths=CONFIG_PATH)
 
 
-def run_yf_stock_prices_intermediate():
+def run_yf_stock_prices_intermediate() -> None:
+    """Load, parse and dump stock price data
+    It merges all stocks into one single dataframe
+
+    Returns:
+        None, it dumps data to a PostgreSQL table instead
+    """
 
     df_stock_names = read_data_pgsql(
         database=config["yf_raw_stock_metadata_db_name"],
         tbl_name=config["yf_raw_stock_metadata_tbl_name"],
     )
 
+    # get only tickers in which data was dumped successfully
     df_stock_names = df_stock_names[df_stock_names["dump_status"] == "dumped"]
 
     stocks = df_stock_names["stock_names"].unique().tolist()
@@ -53,13 +61,19 @@ def run_yf_stock_prices_intermediate():
     )
 
 
-def run_yf_mktcap_intermediate():
+def run_yf_mktcap_intermediate() -> None:
+    """Load, parse and dump market capitalization data
+
+    Returns:
+        None, it dumps data to a PostgreSQL table instead
+    """
 
     df = read_data_pgsql(
         database=config["yf_raw_stock_mktcap_db_name"],
         tbl_name=config["yf_raw_stock_mktcap_tbl_name"],
     )
 
+    # get only tickers in which data was dumped successfully
     df = df[df["status"] == "dumped"]
 
     dump_data_pgsql(
