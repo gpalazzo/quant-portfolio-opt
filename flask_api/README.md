@@ -1,4 +1,5 @@
 ## Quant Portfolio Optimization API
+![alt text](../assets/images/logos/flask_logo.png "Flask Logo")
 
 This API is the entrypoint for external users in the optimization process.
 
