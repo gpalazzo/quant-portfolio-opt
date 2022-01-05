@@ -13,6 +13,7 @@ from kedro_model.models import (
 
 def data_science_pipeline():
 
+    # yahoo finance pipeline
     yahoo_finance_pipeline = pipeline(
         Pipeline(
             [
@@ -41,6 +42,7 @@ def data_science_pipeline():
         )
     )
 
+    # black-litterman model pipeline
     black_litterman_pipeline = pipeline(
         Pipeline(
             [

@@ -5,6 +5,8 @@
 for the entire project. It's the entrypoint for all data
 acquisition processes.
 
+`Airflow WebServer UI` can be accessed through the URL: **http://localhost:8080**.
+
 The data acquisition process is divided by data domains. In
 this particular use case, data domains are driven by the
 data source.

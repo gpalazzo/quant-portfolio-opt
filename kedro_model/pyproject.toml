@@ -35,6 +35,7 @@ extend-exclude = '''
 )/
 '''
 
+# kedro test configs
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \

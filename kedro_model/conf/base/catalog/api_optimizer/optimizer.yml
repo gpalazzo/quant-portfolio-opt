@@ -1,3 +1,5 @@
+# table names here are taken from Flask API service
+
 api_optimizing_requests:
   type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres
