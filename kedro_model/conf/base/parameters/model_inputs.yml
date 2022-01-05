@@ -1,8 +1,0 @@
-num_generations: 50
-crossover_type: "single_point"
-mutation_type: "swap"
-mutation_percent_genes: 10
-parent_selection_type: "sss"
-keep_parents: -1
-num_parents_mating: 2
-sol_per_pop: 1

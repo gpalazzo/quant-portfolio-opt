@@ -167,6 +167,7 @@ class CustomSQLQueryDataSet(AbstractDataSet):
         self._load_args["sql"] = sql
         self._load_args["con"] = credentials["con"]
 
+        # IMPORTANT: if parameter `if_exists` it not set, it defaults to overwrite existing table
         try:
             self.if_exists = self._save_args["if_exists"]
         except KeyError:
@@ -178,7 +179,14 @@ class CustomSQLQueryDataSet(AbstractDataSet):
         del load_args["con"]
         return dict(sql=self._load_args["sql"], load_args=load_args)
 
-    def _parse_query_source(self) -> Tuple[Any, Any]:
+    def _parse_query_source(self) -> Tuple[str, str]:
+        """Parse query source as defined in the catalog
+        Query must be in the format of: database.schema.table_name
+
+        Returns:
+            tuple of strings containing database name and table name
+        """
+
         query_list = self._load_args["sql"].split(" ")
         query_list = [item for item in query_list if len(item) > 0]
         data_source = query_list[query_list.index("from") + 1]
@@ -186,6 +194,13 @@ class CustomSQLQueryDataSet(AbstractDataSet):
         return database, table
 
     def _load(self) -> pd.DataFrame:
+        """Loads data from the data source provided in the query
+        It overwrites the database name provided when creating the Kedro session
+
+        Returns:
+            pandas dataframe with the content of the query provided
+        """
+
         try:
             database, table = self._parse_query_source()
             self._load_args["con"] = self._load_args["con"].replace(
@@ -198,6 +213,16 @@ class CustomSQLQueryDataSet(AbstractDataSet):
             raise _get_sql_alchemy_missing_error() from exc
 
     def _save(self, data: pd.DataFrame) -> None:
+        """Saves data to PostgreSQL table
+        It overwrites the database name provided when creating the Kedro session
+
+        Args:
+            data: pandas dataframe to be dumped into PostgreSQL table
+
+        Returns:
+            None, it dumps data to a PostgreSQL table instead
+        """
+
         database, table = self._parse_query_source()
         _con = self._load_args["con"].replace(os.getenv("PGSQL_DATABASE"), database)
         data.to_sql(table, _con, if_exists=self.if_exists, index=False)

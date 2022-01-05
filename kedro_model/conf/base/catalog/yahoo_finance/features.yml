@@ -1,3 +1,5 @@
+# table names here are taken from `primary` layer of Airflow ETL service
+
 yf_ticker_names_priorities:
   type: kedro_model.io.CustomSQLQueryDataSet
   credentials: postgres

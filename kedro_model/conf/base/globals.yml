@@ -1,3 +1,4 @@
+# credentials are acquired as environment variables and injected here at Kedro session build
 credentials:
   postgres:
     con: "postgresql://username:password@host:port/database"
