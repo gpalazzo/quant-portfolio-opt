@@ -50,6 +50,7 @@ kedro = {extras = ["pandas"], version = "0.17.0"}
 psycopg2-binary = "^2.9.2"
 scikit-learn = "^1.0.1"
 pyportfolioopt = "^1.5.1"
+pytest = "^6.2.5"
 
 [tool.poetry.dev-dependencies]
 black = "^21.7b0"
