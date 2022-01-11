@@ -1,0 +1,4 @@
+from kedro_model.data_domains.yahoo_finance import yahoo_finance_features
+
+
+def test_yahoo_finance_features(parameters):
