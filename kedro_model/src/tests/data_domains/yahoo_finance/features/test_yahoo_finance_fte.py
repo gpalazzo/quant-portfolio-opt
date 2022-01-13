@@ -1,4 +1,4 @@
-from kedro_model.data_domains.yahoo_finance import yahoo_finance_features
+from kedro_model.data_domains.yahoo_finance import yahoo_finance_features, yf_select_mktcap_tickers
 
 
 def test_yahoo_finance_features(parameters):

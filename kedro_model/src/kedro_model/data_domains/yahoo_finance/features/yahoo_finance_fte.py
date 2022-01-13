@@ -9,6 +9,8 @@ def yahoo_finance_features(
     null_pct_cut: float,
 ) -> pd.DataFrame:
 
+    breakpoint()
+
     final_df = pd.DataFrame()
 
     df_pending = df_opt_requests[df_opt_requests["status"] == "pending"]
