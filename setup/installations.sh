@@ -13,7 +13,7 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
 
 # install python
-sudo apt-get install python3.7
+sudo apt-get install python3.8
 
 # miniconda for virtual env
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -27,8 +27,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - #GP
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt update #update the installed packages
 apt-cache policy docker-ce
-sudo apt install docker-ce #docker installation
-sudo systemctl status docker #verify if docker is active
+sudo apt install docker-ce="5:20.10.12~3-0~ubuntu-focal" #docker installation
 sudo usermod -aG docker ${USER} #add current logged user to docker group to avoid using sudo everytime
 su - ${USER}
 id -nG #verify the user was added
